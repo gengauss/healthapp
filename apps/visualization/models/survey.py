@@ -10,7 +10,7 @@ class Survey(models.Model):
     timestamp = models.DateTimeField()
     # General
     country = models.CharField(max_length=256)
-    age = models.IntegerField()
+    age = models.CharField(max_length=256)
     occupation = models.CharField(max_length=256)
     gender = models.CharField(max_length=256)
     # Physical Health
@@ -52,4 +52,3 @@ class SurveyAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Survey, SurveyAdmin)
-
