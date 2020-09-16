@@ -7,6 +7,7 @@ class PhysicalInfo(models.Model):
         db_table = 'physical_info'
         get_latest_by = 'created'
 
+    name = models.CharField(max_length=256, default=None)
     general_information = models.TextField(default=None)
     symptoms = models.TextField(default=None)
     prevention = models.TextField(default=None)
@@ -14,7 +15,7 @@ class PhysicalInfo(models.Model):
 
 
 class PhysicalInfoAdmin(admin.ModelAdmin):
-    list_display = ('general_information', 'symptoms', 'prevention', 'treatment')
+    list_display = ('name', 'general_information', 'symptoms', 'prevention', 'treatment')
 
 
 admin.site.register(PhysicalInfo, PhysicalInfoAdmin)
