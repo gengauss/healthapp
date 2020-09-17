@@ -45,10 +45,12 @@
     </div>
 </nav>
 <div>
+    <h2>{{ mentaldiseases.name | linebreaksbr }}</h2>
     <ul>
-        {% for mentaldisease in mentaldiseases %}
-        <li><a href="{% url 'mentaldetail' mentaldisease.id %}">{{ mentaldisease.name }}</a></li>
-        {% endfor %}
+        <li>General Information: {{ mentaldiseases.general_information | linebreaksbr }}</li>
+        <li>Symptoms: {{ mentaldiseases.symptoms | linebreaksbr }}</li>
+        <li>Prevention: {{ mentaldiseases.prevention | linebreaksbr }}</li>
+        <li>Treatment: {{ mentaldiseases.treatment | linebreaksbr }}</li>
     </ul>
 </div>
 </body>
