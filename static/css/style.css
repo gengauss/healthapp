@@ -1,3 +1,55 @@
 h1 {
-    color: red;
+    color: green;
+}
+
+.navbar {
+    width: 100%;
+    float: right;
+    height: 5em;
+    background-color: #66E7A2;
+}
+
+.navbar .nav-link {
+    color: white;
+}
+
+.container .intro h1 {
+    padding-top: 5em;
+}
+
+/* Float four columns side by side */
+.column {
+    float: left;
+    width: 30%;
+    padding: 0 10px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {
+    margin: 10em -5px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+    .column {
+        width: 100%;
+        display: block;
+        margin-bottom: 20px;
+    }
+}
+
+/* Style the counter cards */
+.card {
+    height: 10em;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    text-align: center;
+    background-color: #f1f1f1;
 }

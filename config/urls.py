@@ -23,4 +23,5 @@ urlpatterns = [
     path(r'', TemplateView.as_view(template_name='home/index.html')),
     path('healthbook/', include('apps.healthbook.urls')),
     path('visualization/', include('apps.visualization.urls')),
+    path('healthtracker/', include('apps.healthtracker.urls')),
 ]
