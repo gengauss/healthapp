@@ -6,7 +6,8 @@ h1 {
     width: 100%;
     float: right;
     height: 5em;
-    background-color: #66E7A2;
+    /* background-color: #66E7A2; */
+    background-color: palevioletred;
 }
 
 .navbar .nav-link {
