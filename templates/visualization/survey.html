@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Visualization</title>
+    <title>Survey - Visualization</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
@@ -13,11 +13,8 @@
 </head>
 <body>
 {% include "home/navbar.html" %}
-<div>
-    <ul>
-        <li><a href="{% url 'surveyresult' %}">Survey</a></li>
-    </ul>
-</div>
 </body>
-
+<div class="container">
+    {{ survey }}
+</div>
 </html>

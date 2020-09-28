@@ -3,7 +3,7 @@ from .views import healthbook
 
 urlpatterns = [
     path('', healthbook.index, name="healthbook"),
-    path('physicalhealth', healthbook.physical_health, name='physicalhealth'),
-    path('mentalhealth', healthbook.mental_health, name='mentalhealth'),
-    path('mentalhealth/<int:mentalinfo_id>', healthbook.mental_detail, name='mentaldetail')
+    path('physicalhealthinfo', healthbook.physical_health, name='physicalhealthinfo'),
+    path('mentalhealthinfo', healthbook.mental_health, name='mentalhealthinfo'),
+    path('mentalhealthinfo/<int:mentalinfo_id>', healthbook.mental_detail, name='mentaldetail')
 ]
