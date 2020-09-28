@@ -8,13 +8,75 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdn.bokeh.org/bokeh/release/bokeh-2.2.1.min.js"></script>
 </head>
 <body>
 {% include "home/navbar.html" %}
-</body>
+{% block content %}
 <div class="container">
-    {{ survey }}
+    <div class="col">
+        <h4>General Questions</h4>
+        <div class="row">
+            <div class="col-sm-8">
+            {{ div_country | safe }}
+            {{ script_country | safe }}
+            </div>
+            <div class="col-sm-8">
+            {{ div_age | safe }}
+            {{ script_age | safe }}
+            </div>
+            <div class="col-sm-8">
+            {{ div_job | safe }}
+            {{ script_job | safe }}
+            </div>
+            <div class="col-sm-8">
+            {{ div_gender | safe }}
+            {{ script_gender | safe }}
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <h4>Physical Health Questions</h4>
+        <div class="row">
+            <div class="col-sm-8">
+            {{ div_water | safe }}
+            {{ script_water | safe }}
+            </div>
+            <div class="col-sm-8">
+            {{ div_diet | safe }}
+            {{ script_diet | safe }}
+            </div>
+            <div class="col-sm-8">
+            {{ div_meals | safe }}
+            {{ script_meals | safe }}
+            </div>
+            <div class="col-sm-8">
+            {{ div_first_meal | safe }}
+            {{ script_first_meal | safe }}
+            </div>
+            <div class="col-sm-8">
+            {{ div_last_meal | safe }}
+            {{ script_last_meal | safe }}
+            </div>
+            <div class="col-sm-8">
+            {{ div_same_meal | safe }}
+            {{ script_same_meal | safe }}
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <h4>Mental Health Questions</h4>
+        <div class="row">
+            <div class="col-sm-8">
+            {{ div_mental_important | safe }}
+            {{ script_mental_important | safe }}
+            </div>
+        </div>
+    </div>
 </div>
+{% endblock %}
+</body>
+
 </html>
