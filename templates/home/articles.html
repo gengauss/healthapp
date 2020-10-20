@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Health App</title>
+    <title>Articles</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
@@ -13,22 +13,6 @@
 </head>
 <body>
 {% include "home/navbar.html" %}
-<div class="container">
-    <div class="intro">
-        <h1>How well do you know about your current health being?</h1>
-    </div>
-        <div class="row">
-          <div class="column">
-            <div class="card"><a href="{% url 'healthbook' %}">Health Books</a></div>
-          </div>
-          <div class="column">
-              <div class="card"><a href="{% url 'visualization' %}">Visualization</a></div>
-          </div>
-          <div class="column">
-              <div class="card"><a href="{% url 'healthtracker' %}">Health Tracker</a></div>
-          </div>
-        </div>
-    </div>
+<h1>Articles</h1>
 </body>
-
 </html>
