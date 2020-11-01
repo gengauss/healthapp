@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Visualization</title>
+    <title>Login</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
@@ -13,12 +13,11 @@
 </head>
 <body>
 {% include "home/navbar.html" %}
-<div>
-    <ul>
-        <li><a href="{% url 'surveyresult' %}">Survey</a></li>
-        <li><a href="{% url 'diabetes' %}">Diabetes</a></li>
-    </ul>
-</div>
-</body>
-
-</html>
+{% block content %}
+    <h2>You have been logged out</h2>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            Need An Account? <a class="ml-2" href="{% url 'login' %}">Login Again</a>
+        </small>
+    </div>
+{% endblock content %}

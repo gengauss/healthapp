@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Visualization</title>
+    <title>Health App</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
@@ -14,9 +14,12 @@
 <body>
 {% include "home/navbar.html" %}
 <div>
+    <h2>{{ mentaldiseases.name | linebreaksbr }}</h2>
     <ul>
-        <li><a href="{% url 'surveyresult' %}">Survey</a></li>
-        <li><a href="{% url 'diabetes' %}">Diabetes</a></li>
+        <li>General Information: {{ mentaldiseases.general_information | linebreaksbr }}</li>
+        <li>Symptoms: {{ mentaldiseases.symptoms | linebreaksbr }}</li>
+        <li>Prevention: {{ mentaldiseases.prevention | linebreaksbr }}</li>
+        <li>Treatment: {{ mentaldiseases.treatment | linebreaksbr }}</li>
     </ul>
 </div>
 </body>
