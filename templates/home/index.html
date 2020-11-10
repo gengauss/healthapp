@@ -13,21 +13,33 @@
 </head>
 <body>
 {% include "home/navbar.html" %}
-<div class="container">
-    <div class="intro">
-        <h1>How well do you know about your current health being?</h1>
+<div class="container-fluid">
+    <div class="row" id="banner">
+        <div class="col-lg-6" id="banner-introduction-text">
+            <h3>自分の<span style="color:#ff9898;">健康</span>、どれまで詳しいの？</h3><br>
+            <p>もっとも場合を換言家もちょうどその発展ないないじゃがなれるからおかますにも尊重取り巻かでますで、あくまでには寄っますたでなけれ。差へ食うなのは何しろ九月にもしでたな。</p>
+            <br>
+            <button type="button" class="btn btn-info btn-lg">About Us</button>
+        </div>
+        <div class="col-lg-6">
+            <img id="banner-mockup-image" class="img-fluid" src="{% static 'img/banner_mockup.png' %}" alt="Mockup Image">
+        </div>
+
     </div>
-        <div class="row">
-          <div class="column">
+    <div class="container-fluid">
+        <div class="col-xs-12"><h3 style="text-align: center; font-size: 40px;">自分の<span style="color:#ff9898;">健康</span>、どれまで詳しいの？</h3></div>
+        <div class="row" id="three-functions-cards">
+          <div class="col-md-4">
             <div class="card"><a href="{% url 'healthbook' %}">Health Books</a></div>
           </div>
-          <div class="column">
+          <div class="col-md-4">
               <div class="card"><a href="{% url 'visualization' %}">Visualization</a></div>
           </div>
-          <div class="column">
+          <div class="col-md-4">
               <div class="card"><a href="{% url 'login' %}">Health Tracker</a></div>
           </div>
         </div>
+    </div>    
     </div>
 </body>
 
