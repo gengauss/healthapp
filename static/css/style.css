@@ -1,20 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&display=swap');
+body{
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+}
 h1 {
     color: green;
 }
 
+
+/*styling navigation bar */
 .navbar {
     width: 100%;
     float: right;
     height: 5em;
-    background-color: #66E7A2;
+    /* background-color: #66E7A2; */
+    background-color: #2E9D65;
+    font-size: 20px;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
 }
 
-.navbar .nav-link {
+.navlink{
+    color: #;
+}
+
+/*styling landing page banner */
+#banner{
+    margin-bottom: 5%;
+}
+.container-fluid #banner{
+    background-color:#2E9D65 ;
+    padding-top: 3%;
+    padding-bottom: 5%;
+}
+
+#banner-introduction-text{
     color: white;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    padding-top: 6%;
+    padding-left: 8%;
+    line-height: 1.6;
+}
+#banner-introduction-text h3{
+    font-size: 40px;
+    font-weight: 500;
+}
+#banner-introduction-text p{
+    font-weight: 300;
+    font-size: 20px;
 }
 
-.container .intro h1 {
-    padding-top: 5em;
+#banner-mockup-image{
+    width: 100%;
+    height: auto;
+}
+#banner-introduction-text button{
+    font-weight: 400;
+}
+
+/* Styling 3 functions card of homepage */
+#three-functions-cards{
+    margin: 5%;
 }
 
 /* Float four columns side by side */
@@ -38,6 +82,18 @@ h1 {
 
 /* Responsive columns */
 @media screen and (max-width: 600px) {
+    /*styling landing page banner */
+
+#banner-introduction-text{
+    padding: 5%;
+    margin-bottom: 15%;
+}
+
+#banner-mockup-image{
+    width: 100%;
+    height: auto;
+}
+
     .column {
         width: 100%;
         display: block;
@@ -53,3 +109,4 @@ h1 {
     text-align: center;
     background-color: #f1f1f1;
 }
+
