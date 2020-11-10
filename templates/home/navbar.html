@@ -23,7 +23,7 @@
                 <button type="button" class="btn btn-warning" onclick="window.location.href = '{% url 'logout' %}'">Logout</button>
             {% else %}
                 <button type="button" class="btn btn-primary" onclick="window.location.href = '{% url 'login' %}'">Login</button>
-                <button type="button" class="btn btn-success" onclick="window.location.href = '{% url 'register' %}'">Sign Up</button>
+                <button type="button" class="btn btn-outline-warning" onclick="window.location.href = '{% url 'register' %}'">Sign Up</button>
             {% endif %}
         </form>
     </div>
