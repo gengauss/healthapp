@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&display=swap');
 body{
-    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-family: 'M PLUS Rounded 1c', sans-serif !important;
 }
 h1 {
     color: green;
@@ -9,29 +9,31 @@ h1 {
 
 /*styling navigation bar */
 .navbar {
+    padding-top: 0;
     width: 100%;
     float: right;
     height: 5em;
     /* background-color: #66E7A2; */
     background-color: #2E9D65;
-    font-size: 20px;
-    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-size: 18px;
 }
-
-
+.navbar-light .navbar-nav .nav-link{
+    color: #ffffff !important;
+}
+.navbar-light .navbar-nav .nav-link:hover{
+    color:#ff9898 !important;
+    text-decoration: underline;
+}
 /*styling landing page banner */
-#banner{
-    margin-bottom: 5%;
-}
 .container-fluid #banner{
     background-color:#2E9D65 ;
-    padding-top: 3%;
+    padding-top: 10%;
     padding-bottom: 5%;
+    margin-bottom: 8%;
 }
 
 #banner-introduction-text{
-    color: white;
-    font-family: 'M PLUS Rounded 1c', sans-serif;
+    color: #ffffff;
     padding-top: 6%;
     padding-left: 8%;
     line-height: 1.6;
@@ -44,7 +46,23 @@ h1 {
     font-weight: 300;
     font-size: 20px;
 }
-
+#banner-introduction-text a{
+    text-decoration: none;
+    text-align: center;
+    border-radius: 30px;
+    border: 2px solid #ff9898;
+    font-size: 20px;
+    font-weight: 500;
+    padding: 2%;
+    color: #ffffff;
+    display: block;
+    width: 30%;
+    background-color: #ff9898;
+}
+#banner-introduction-text a:hover{
+    border-color: #ce7979;
+    background-color: #ce7979;
+}       
 #banner-mockup-image{
     width: 100%;
     height: auto;
@@ -54,9 +72,47 @@ h1 {
 }
 
 /* Styling 3 functions card of homepage */
-#three-functions-cards{
+.three-functions-cards{
     margin: 5%;
+    border-radius: 25px;
+    border: 2px solid #2E9D65;
+    text-align: center;
+    padding: 10%;
+    box-shadow: none;
+    margin-top: 10%;
 }
+.three-functions-cards img{
+    display: block;
+    width: 40%;
+    margin: auto;
+}
+.three-functions-cards h3{
+    color: #2E9D65;
+    margin-top: 10%;
+}
+.three-functions-cards p{
+    font-size: 20px;
+    line-height: 1.6;
+    margin: 10%;
+}
+.three-functions-cards a{
+    border-radius: 25px;
+    border: 2px solid #2E9D65;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 4%;
+    color: #2E9D65;
+    display: block;
+    width: 50%;
+    margin: auto;
+    background-color: #f1f1f1;
+}
+.three-functions-cards a:hover{
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #2E9D65;
+}
+
 
 /* Float four columns side by side */
 .column {
@@ -66,9 +122,7 @@ h1 {
 }
 
 /* Remove extra left and right margins, due to padding */
-.row {
-    margin: 10em -5px;
-}
+
 
 /* Clear floats after the columns */
 .row:after {
@@ -80,6 +134,20 @@ h1 {
 /* Responsive columns */
 @media screen and (max-width: 600px) {
     /*styling landing page banner */
+    #banner{
+        margin-bottom: 30%;
+    }
+    
+    .container-fluid #banner{
+        padding-top: 35%;
+    }
+    #banner-introduction-text a{
+        margin: auto;
+        width: 50%;
+    }
+    .three-functions-cards{
+        margin: 5%;
+    }
 
 #banner-introduction-text{
     padding: 5%;
@@ -98,12 +166,4 @@ h1 {
     }
 }
 
-/* Style the counter cards */
-.card {
-    height: 10em;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    padding: 20px;
-    text-align: center;
-    background-color: #f1f1f1;
-}
 
