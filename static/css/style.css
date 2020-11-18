@@ -216,7 +216,16 @@ h1 {
 #small-articles{
     margin-bottom: 10%;
 }
+#mental-health{
+    display: block;
+}
+#mental-health-button{
+    color:#2E9D65;
+}
 
+#physical-health{
+    display: none;
+}
 /* Float four columns side by side */
 .column {
     float: left;
