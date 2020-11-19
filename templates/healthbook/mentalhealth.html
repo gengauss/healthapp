@@ -27,6 +27,11 @@
     </ul>
 </div>
 <div class="main" id="healthbook">
+    <div class="md-form active-pink active-pink-2 mb-3 mt-0">
+    <form action="{% url 'mentalhealthsearch' %}" method="GET">
+        <input class="search-input" type="text" name="q" placeholder="Search">
+    </form>
+    </div>
     <div class="row">
     {% for mentaldisease in mentaldiseases %}
         <div class="col-lg-4 col-md-6">

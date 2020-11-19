@@ -28,21 +28,26 @@
 </div>
 <div class="main" id="healthbook">
     <div class="md-form active-pink active-pink-2 mb-3 mt-0">
-    <form action="{% url 'physicalhealthsearch' %}" method="GET">
+    <form action="search" method="get">
         <input class="search-input" type="text" name="q" placeholder="Search">
     </form>
     </div>
+    <p>You searched for: <b class="result-font">{{ query }}</b></p>
     <div class="row">
-    {% for physicaldisease in physicaldiseases %}
+    {% if mentaldiseases %}
+        {% for mentaldisease in mentaldiseases %}
         <div class="col-lg-4 col-md-6">
             <div class="article" id="small-articles">
                 <img class="img-thumbnail" src="{% static 'img/note.png' %}" alt="thumbnail"><br>
-                <h4><a href="{% url 'physicaldetail' physicaldisease.id %}">{{ physicaldisease.name }}</a></h4>
-                <p>{{ physicaldisease.general_information }}</p>
+                <h4><a href="{% url 'mentaldetail' mentaldisease.id %}">{{ mentaldisease.name }}</a></h4>
+                <p>{{ mentaldisease.general_information }}</p>
                 <a>Read more</a>
             </div>
         </div>
-    {% endfor %}
+        {% endfor %}
+    {% else %}
+        <p>No diseases matched your search criteria.</p>
+    {% endif %}
     </div>
 </div>
 </body>
