@@ -14,12 +14,16 @@
 <body>
 {% include "home/navbar.html" %}
 <div>
+    <br><br><br><br>
     <h2>{{ mentaldiseases.name | linebreaksbr }}</h2>
     <ul>
         <li>General Information: {{ mentaldiseases.general_information | linebreaksbr }}</li>
         <li>Symptoms: {{ mentaldiseases.symptoms | linebreaksbr }}</li>
+        <li>Diagnosis: {{ mentaldiseases.diagnosis | linebreaksbr }}</li>
+        <li>Causes: {{ phmentaldiseases.cause | linebreaksbr }}</li>
         <li>Prevention: {{ mentaldiseases.prevention | linebreaksbr }}</li>
         <li>Treatment: {{ mentaldiseases.treatment | linebreaksbr }}</li>
+        <li>URL: <a>{{ mentaldiseases.url | linebreaksbr }}</a></li>
     </ul>
 </div>
 </body>

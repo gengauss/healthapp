@@ -14,12 +14,16 @@
 <body>
 {% include "home/navbar.html" %}
 <div>
+    <br><br><br><br>
     <h2>{{ physicaldiseases.name | linebreaksbr }}</h2>
     <ul>
         <li>General Information: {{ physicaldiseases.general_information | linebreaksbr }}</li>
         <li>Symptoms: {{ physicaldiseases.symptoms | linebreaksbr }}</li>
+        <li>Diagnosis: {{ physicaldiseases.diagnosis | linebreaksbr }}</li>
+        <li>Causes: {{ physicaldiseases.cause | linebreaksbr }}</li>
         <li>Prevention: {{ physicaldiseases.prevention | linebreaksbr }}</li>
         <li>Treatment: {{ physicaldiseases.treatment | linebreaksbr }}</li>
+        <li>URL: <a>{{ physicaldiseases.url | linebreaksbr }}</a></li>
     </ul>
 </div>
 </body>
