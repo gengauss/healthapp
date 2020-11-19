@@ -13,6 +13,27 @@
 </head>
 <body>
 {% include "home/navbar.html" %}
-<h1>Contact</h1>
+<div class="main">
+    <h1>Contact</h1>
+    <p>If you have anything about the website, please let us know!</p>
+<form id="contact_form">
+  <div class="form-group">
+    <label for="name">名前</label>
+    <input type="name" class="form-control" id="name" placeholder="例：鈴木良太">
+  </div>
+  <div class="form-group">
+    <label for="email">E-mail</label>
+    <input type="email" class="form-control" id="email" placeholder="例：abc123@gmail.com">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="form-group">
+    <label for="feedback">Feedback</label>
+    <textarea type="feedback" class="form-control" id="feedback" placeholder="言いたいことはここに" style="height:300px;"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<h1>Or reach us through social media!</h1>
+<img src="{% static 'img/icons/twitter.png' %}" href="" style="width: 10%;height: auto; cursor: pointer;">
+</div>
 </body>
 </html>
