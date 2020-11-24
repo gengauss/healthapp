@@ -1,7 +1,7 @@
 from django.contrib.auth import views as auth_views
 from django.urls import path
 
-from .views import healthtracker
+from .views import healthtracker, goal
 from .views.healthtracker import select_food, update_food, delete_food, ProfilePage, add_food
 
 urlpatterns = [
@@ -16,5 +16,5 @@ urlpatterns = [
     path('caloriestracker/update_food/<str:pk>/', update_food, name='update_food'),
     path('caloriestracker/delete_food/<str:pk>/', delete_food, name='delete_food'),
     path('caloriestracker/profile/', ProfilePage, name='profile'),
-    path('goalstracker', healthtracker.goals, name="goalstracker")
+    path('goalstracker', goal.listGoal, name="goalstracker")
 ]
