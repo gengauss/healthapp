@@ -1,8 +1,8 @@
 from django.apps import AppConfig
 
 
-class AppsConfig(AppConfig):
+class CaloriesConfig(AppConfig):
     name = 'apps.healthtracker'
 
-    def ready(self):
+    def ready(self, **kwargs):
         import apps.healthtracker.signals
