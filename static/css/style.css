@@ -3,6 +3,15 @@ body{
     font-family: 'M PLUS Rounded 1c', sans-serif !important;
     line-height: 2 !important;
 }
+html{
+    scroll-behavior: smooth;
+}
+a{
+    text-decoration: none;
+}
+ul{
+    list-style: none;
+}
 h1 {
     color: green;
 }
@@ -151,6 +160,7 @@ h1 {
     position: fixed; 
     height: 100%;
     padding-top: 150px;
+    overflow-x: scroll;
 }
 .vertical-navbar ul{
     padding: 5%;
@@ -192,19 +202,21 @@ h1 {
     background-color: #ffffff;
     padding: 10%;
     border-radius: 30px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    transition: 0.3;
-}
-.article a{
-    display: block;
-    color: #2E9D65 !important;
-    font-size: 18px;
-    font-weight: 600;
-    transition: 0.3s;
+    border: 2px solid #2E9D65;
     cursor: pointer;
+    font-size: 20px;
+    transition: 0.3s;
+    color: #2E9D65;
+    text-align: center;
+    text-decoration: none;
 }
-.article a:hover{
-    color:#ff9898 !important;
+.article:hover{
+    background-color: #2E9D65;
+    border: 2px solid #2E9D65;
+    cursor: pointer;
+    color: #f1f1f1;
+    scale: 0.5;
+    text-decoration: none !important;
 }
 #healthbook h2{
     color: #2E9D65;
@@ -232,8 +244,24 @@ h1 {
     width: 30%;
     padding: 0 10px;
 }
-
-
+#form-healthbook{
+    border: 2px solid #2E9D65;
+    margin-bottom: 30px;
+    width: 80%;
+    border-radius: 30px;
+}
+#search{
+    margin: 0;
+    padding-right: 20px;
+    width: 5%;
+    height: auto;
+}
+.detail-disease{
+    font-size: 18px;
+}
+.detail-disease li{
+    margin-top: 40px;
+}
 /* Remove extra left and right margins, due to padding */
 
 
