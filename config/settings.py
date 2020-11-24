@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apps.healthbook',
     'apps.visualization',
+    'apps.healthtracker',
 ]
 
 MIDDLEWARE = [

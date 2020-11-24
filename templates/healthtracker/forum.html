@@ -15,30 +15,7 @@
 {% include "home/navbar.html" %}
 <br><br><br>
 {% if user.is_authenticated %}
-<div class="main" id="healthbook">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="article" id="big-article">
-                    <h4><a href="{% url 'forum' %}">Health Forum</a></h4>
-                    <p>Question and Answer</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="article" id="big-article">
-                    <h4><a href="{% url 'caloriestracker' %}">Calories Tracker</a></h4>
-                    <p>Manage your calories</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="article" id="big-article">
-                    <h4><a href="{% url 'goalstracker' %}">Health Goals Tracker</a></h4>
-                    <p>Manage your health goals</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+    <h1>Forum</h1>
 {% else %}
     <h1>You have to login first</h1>
     <a class="nav-link" href="{% url 'login' %}">Login</a>
