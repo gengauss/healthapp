@@ -7,9 +7,9 @@ class Goal(models.Model):
         db_table = 'goal'
         get_latest_by = 'created'
 
-    title = models.CharField(max_length=256)
-    complete = models.BooleanField(default=None)
-    created = models.DateTimeField(auto_now_add=True)
+    title = models.CharField(max_length=256, null=True)
+    complete = models.BooleanField(default=None, null=True)
+    created = models.DateTimeField(auto_now_add=True, null=True)
     due = models.DateTimeField(auto_now_add=False, auto_now=False, blank=True, null=True)
 
     def __str__(self):

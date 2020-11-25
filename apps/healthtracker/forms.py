@@ -42,3 +42,11 @@ class GoalForm(forms.ModelForm):
     class Meta:
         model = Goal
         fields = ['title', 'due']
+
+
+class UpdateForm(forms.ModelForm):
+    title = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Task title...'}))
+
+    class Meta:
+        model = Goal
+        fields = ['title', 'due', 'complete']

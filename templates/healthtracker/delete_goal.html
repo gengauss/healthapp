@@ -15,31 +15,13 @@
 {% include "home/navbar.html" %}
 <br><br><br>
 {% if user.is_authenticated %}
-<div class="main" id="healthbook">
-<img class="img-fluid" class="function-icon" src="{% static 'img/member_images/Tung.png' %}">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="article" id="big-article">
-                    <h4><a href="{% url 'forum' %}">Health Forum</a></h4>
-                    <p>Question and Answer</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="article" id="big-article">
-                    <h4><a href="{% url 'caloriestracker' %}">Calories Tracker</a></h4>
-                    <p>Manage your calories</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="article" id="big-article">
-                    <h4><a href="{% url 'goalstracker' %}">Health Goals Tracker</a></h4>
-                    <p>Manage your health goals</p>
-                </div>
-            </div>
-        </div>
+    <div class="container">
+        <b>Deleting "<span style="color: red;">{{item}}</span>" is parmanent... do you want to proceed?</b><br>
+	    <a class="btn btn-sm btn-success myButton" href="{% url 'goalstracker' %}" >No</a>
+        <form method="POST" action="">{% csrf_token %}
+            <input class="btn btn-sm btn-danger" type="submit" value="Yes" name="Yes">
+        </form>
     </div>
-</div>
 {% else %}
     <h1>You have to login first</h1>
     <a class="nav-link" href="{% url 'login' %}">Login</a>

@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 
 from ..models import Goal
-from ..forms import GoalForm
+from ..forms import GoalForm, UpdateForm
 
 
 def listGoal(request):
@@ -11,9 +11,37 @@ def listGoal(request):
         form = GoalForm(request.POST)
         if form.is_valid():
             form.save()
-        return redirect('/')
+        return redirect('goalstracker')
     context = {
-        'tasks': queryset,
+        'goals': queryset,
         'form': form,
     }
-    return render(request, '../templates/healthtracker/list_goal.html', context)
+    return render(request, '../templates/healthtracker/goalstracker.html', context)
+
+
+def updateGoal(request, pk):
+    queryset = Goal.objects.get(id=pk)
+    form = UpdateForm(instance=queryset)
+    if request.method == 'POST':
+        form = UpdateForm(request.POST, instance=queryset)
+        if form.is_valid():
+            form.save()
+            return redirect('goalstracker')
+
+    context = {
+        'form': form
+    }
+
+    return render(request, '../templates/healthtracker/update_goal.html', context)
+
+
+def deleteGoal(request, pk):
+    queryset = Goal.objects.get(id=pk)
+    if request.method == 'POST':
+        queryset.delete()
+        return redirect('goalstracker')
+
+    context = {
+        'item': queryset
+    }
+    return render(request, '../templates/healthtracker/delete_goal.html', context)

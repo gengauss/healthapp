@@ -16,5 +16,7 @@ urlpatterns = [
     path('caloriestracker/update_food/<str:pk>/', update_food, name='update_food'),
     path('caloriestracker/delete_food/<str:pk>/', delete_food, name='delete_food'),
     path('caloriestracker/profile/', ProfilePage, name='profile'),
-    path('goalstracker', goal.listGoal, name="goalstracker")
+    path('goalstracker', goal.listGoal, name="goalstracker"),
+    path('goalstracker/update_goal/<str:pk>/', goal.updateGoal, name="update_goal"),
+    path('goalstracker/delete_goal/<str:pk>/', goal.deleteGoal, name="delete_goal"),
 ]
