@@ -76,7 +76,7 @@
         justify-content: center;
         align-items: center;
         width: 600px;
-        height: 600px;
+        height: 300px;
     }
 
     .box .percent svg circle {
@@ -151,7 +151,7 @@
                                 </svg>
                                 <div class="number">
                                     {% load templatetag %}
-                                    <h2 id="due">{{ goal|convert_to_seconds }}<span>%</span></h2>
+                                    <h2 class="due">{{ goal|convert_to_seconds }}<span>%</span></h2>
                                 </div>
                             </div>
                         </div>
@@ -180,7 +180,15 @@
         date_input.datepicker(options);
     })
 
-    var percentage = parseInt(document.getElementById("due").innerText);
-    let progressCircle = document.querySelector(".progress");
-    progressCircle.style.strokeDashoffset = 620 - (620 * percentage) / 100;
+    var percentage = document.querySelectorAll(".due");
+    var array = [];
+    for (let i = 0; i < percentage.length; i++) {
+        var regex = /[+-]?\d+(\.\d+)?/g;
+        array.push(percentage[i].innerText.match(regex).map(function(v) { return parseFloat(v); }));
+    }
+    let progressCircle = document.querySelectorAll(".progress");
+    for (let i = 0; i < progressCircle.length; i++) {
+        progressCircle[i].style.strokeDashoffset = 620 - (620 * array[i]) / 100;
+    }
+
 </script>
