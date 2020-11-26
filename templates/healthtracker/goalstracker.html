@@ -49,7 +49,7 @@
         color: white;
     }
 
-    .timer{
+    .timer {
         background-color: #dc3545;
         border-radius: 5px;
         padding: 5px;
@@ -57,7 +57,7 @@
 
     .box {
         position: relative;
-        width: 300px;
+        width: 600px;
         height: 260px;
         display: flex;
         justify-content: center;
@@ -75,19 +75,21 @@
         position: relative;
         justify-content: center;
         align-items: center;
+        width: 600px;
+        height: 600px;
     }
 
     .box .percent svg circle {
-        width: 150px;
-        height: 150px;
+        width: 250px;
+        height: 250px;
         fill: none;
         stroke-width: 10;
         stroke: #000;
         transform: translate(5px, 5px);
         justify-content: center;
         align-items: center;
-        stroke-dasharray: 440;
-        stroke-dashoffset: 440;
+        stroke-dasharray: 620;
+        stroke-dashoffset: 620;
         stroke-linecap: round;
     }
 
@@ -97,14 +99,14 @@
     }
 
     .box .percent svg circle:nth-child(2) {
-        stroke-dashoffset:  calc(440 - (440 * 87) / 100);
+        stroke-dashoffset: calc(620 - (620 * 87) / 100);
         stroke: #03a9f4;
     }
 
     .box .percent .number {
         position: absolute;
-        top: 50px;
-        left: 30px;
+        top: 75px;
+        left: 40px;
         width: 100%;
         height: 100%;
         display: flex;
@@ -119,7 +121,7 @@
     }
 
     .box .text {
-        padding: 10px 0 0;
+        padding: 20px 0 0;
     }
 
 </style>
@@ -137,32 +139,20 @@
             {% for goal in goals %}
                 <div class="item-row">
                     {% if goal.complete == True %}
-                        <strike>{{ goal }}, {{ goal.due|timeuntil }}</strike>
-                        <div class="box">
-                            <div class="percent">
-                                <svg>
-                                    <circle cx="70" cy="70" r="70"></circle>
-                                    <circle cx="70" cy="70" r="70"></circle>
-                                </svg>
-                                <div class="number">
-                                    <h2>87<span>%</span></h2>
-                                </div>
-                                <h2 class="text">Progress</h2>
-                            </div>
-                        </div>
+                        <strike>{{ goal }}, {{ goal.due | timeuntil }}</strike>
                     {% else %}
                         <span>{{ goal }}</span>
-                        <span style="float: right;" class="timer"><b>Due:</b> {{ goal.due|timeuntil }}</span>
+                        <span style="float: right;" class="timer"><b>Due: </b>{{ goal.due | timeuntil }}</span>
                         <div class="box">
                             <div class="percent">
                                 <svg>
-                                    <circle cx="70" cy="70" r="70"></circle>
-                                    <circle cx="70" cy="70" r="70"></circle>
+                                    <circle cx="100" cy="100" r="100" class="track"></circle>
+                                    <circle cx="100" cy="100" r="100" class="progress"></circle>
                                 </svg>
                                 <div class="number">
-                                    <h2>87<span>%</span></h2>
+                                    {% load templatetag %}
+                                    <h2 id="due">{{ goal|convert_to_seconds }}<span>%</span></h2>
                                 </div>
-                                <h2 class="text">Progress</h2>
                             </div>
                         </div>
                     {% endif %}
@@ -181,12 +171,16 @@
 
 </html>
 <script>
-    $(document).ready(function(){
-      var date_input=$('input[name="due"]'); //our date input has the name "date"
-      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-      var options={
-        dateFormat: 'yy-mm-dd',
-      };
-      date_input.datepicker(options);
+    $(document).ready(function () {
+        var date_input = $('input[name="due"]'); //our date input has the name "date"
+        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+        var options = {
+            dateFormat: 'yy-mm-dd',
+        };
+        date_input.datepicker(options);
     })
+
+    var percentage = parseInt(document.getElementById("due").innerText);
+    let progressCircle = document.querySelector(".progress");
+    progressCircle.style.strokeDashoffset = 620 - (620 * percentage) / 100;
 </script>

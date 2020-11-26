@@ -1,3 +1,5 @@
+import datetime
+
 from django.shortcuts import redirect, render
 
 from ..models import Goal
@@ -12,6 +14,7 @@ def listGoal(request):
         if form.is_valid():
             form.save()
         return redirect('goalstracker')
+
     context = {
         'goals': queryset,
         'form': form,
