@@ -18,7 +18,7 @@ class Comment(models.Model):
     class Meta:
         db_table = 'comment'
         get_latest_by = 'created'
-    answer = models.TextField()
+    text = models.TextField()
     posted_at = models.DateTimeField(default=timezone.now)
     question = models.ForeignKey(Question, related_name='comments', on_delete=models.CASCADE)
 

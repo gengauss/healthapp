@@ -33,7 +33,8 @@
     {% if questions %}
     {% for question in questions %}
     <a href="{% url 'detail' question.id %}">{{ question.title }}</a>
-    <small>[{{ question.posted_at }}]</small>
+    <small>{{ question.posted_at }}</small>
+    <small>Like: {{ question.like }}</small>
     <div>
       {{ question.text | linebreaksbr }}
     </div>

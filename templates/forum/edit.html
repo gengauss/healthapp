@@ -15,6 +15,21 @@
 {% include "home/navbar.html" %}
 <br><br><br>
 {% if user.is_authenticated %}
+    <h1 >Edit article</h1>
+    <form action="{% url 'update' question.id %}" method="post">
+      {% csrf_token %}
+      <div>
+        <label for="titleInput">Title</label>
+        <input id="titleInput" name="title" type="text" placeholder="Input title" value="{{ question.title }}">
+      </div>
+      <div>
+        <label for="textInput">Text</label>
+        <textarea id="textInput" name="text" rows="3">{{ question.text }}</textarea>
+      </div>
+      <div>
+        <button type="submit">Submit</button>
+      </div>
+    </form>
 {% else %}
     <h1>You have to login first</h1>
     <a class="nav-link" href="{% url 'login' %}">Login</a>

@@ -21,7 +21,8 @@ urlpatterns = [
     path('goalstracker/delete_goal/<str:pk>/', goal.deleteGoal, name="delete_goal"),
 
     path('forum', forum.index, name="forum"),
-    path('forum/<int:article_id>/', forum.detail, name='detail'),
-    path('forum/<int:article_id>/delete', forum.delete, name='delete'),
-    path('forum/<int:article_id>/update', forum.update, name='update')
+    path('forum/<int:question_id>/', forum.detail, name='detail'),
+    path('forum/<int:question_id>/delete', forum.delete, name='delete'),
+    path('forum/<int:question_id>/update', forum.update, name='update'),
+    path('forum/<int:question_id>/like', forum.like, name='like')
 ]
