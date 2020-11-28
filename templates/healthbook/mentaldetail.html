@@ -26,13 +26,13 @@
 </div>
 <div class="main" id="healthbook">
 <div>
-    <img class="img-fluid" class="function-icon" src="{% static 'thumbnail/depression-cover.jpg' %}" alt="cover">
+{#    <img class="img-fluid" class="function-icon" src="{% static 'thumbnail/depression-cover.jpg' %}" alt="cover">#}
     <h2>{{ mentaldiseases.name | linebreaksbr }}</h2>
     <ul class="detail-disease" style="padding: 0;">
         <li id="general-information"><h4>General Information</h4> {{ mentaldiseases.general_information | linebreaksbr }}</li>
         <li id="symptom"><h4>Symptoms</h4> {{ mentaldiseases.symptoms | linebreaksbr }}</li>
         <li id="diagnosis"><h4>Diagnosis</h4> {{ mentaldiseases.diagnosis | linebreaksbr }}</li>
-        <li id="causes"><h4>Causes</h4> {{ phmentaldiseases.cause | linebreaksbr }}</li>
+        <li id="causes"><h4>Causes</h4> {{ mentaldiseases.cause | linebreaksbr }}</li>
         <li id="prevention"><h4>Prevention</h4> {{ mentaldiseases.prevention | linebreaksbr }}</li>
         <li id="treatment"><h4>Treatment</h4> {{ mentaldiseases.treatment | linebreaksbr }}</li>
         <li id="source"><h4>URL</h4> <a>{{ mentaldiseases.url | linebreaksbr }}</a></li>
