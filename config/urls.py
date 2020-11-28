@@ -17,13 +17,14 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic.base import TemplateView
 
+from apps.healthbook.views import healthbook
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path(r'', TemplateView.as_view(template_name='home/index.html')),
     path(r'articles/', TemplateView.as_view(template_name='home/articles.html')),
     path(r'aboutus/', TemplateView.as_view(template_name='home/aboutus.html')),
-    path(r'contact/', TemplateView.as_view(template_name='home/contact.html')),
+    path(r'contact/', healthbook.contact, name='contact'),
     path('healthbook/', include('apps.healthbook.urls')),
     path('visualization/', include('apps.visualization.urls')),
     path('healthtracker/', include('apps.healthtracker.urls')),

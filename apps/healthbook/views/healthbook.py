@@ -1,6 +1,6 @@
 from django.http import HttpResponse
-from django.shortcuts import render
-from ..models import MentalInfo, PhysicalInfo
+from django.shortcuts import render, redirect
+from ..models import MentalInfo, PhysicalInfo, Contact
 
 
 def index(request):
@@ -49,3 +49,10 @@ def mental_search(request):
                       {'mentaldiseases': mentaldiseases, 'query': q})
     else:
         return HttpResponse('Please submit a search term.')
+
+
+def contact(request):
+    if request.method == 'POST':
+        contact_form = Contact(name=request.POST['name'], email=request.POST['email'], feedback=request.POST['feedback'])
+        contact_form.save()
+    return render(request, '../templates/home/contact.html', {})
