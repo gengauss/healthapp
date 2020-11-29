@@ -13,28 +13,34 @@
 </head>
 <body>
 {% include "home/navbar.html" %}
-<br><br><br>
 {% if user.is_authenticated %}
-<div class="main" id="healthbook">
-<img class="img-fluid" class="function-icon" src="{% static 'img/member_images/Tung.png' %}">
+<div class="main">
+    <div class="container-fluid" style="margin-bottom: 50px;">
+        <div class="row justify-content-center" style="margin-bottom:30px ;">
+            <img id="profile-picture" class="img-fluid" class="function-icon" src="{% static 'img/member_images/Tung.png' %}">
+        </div>
+        <div class="row justify-content-center">
+            <h2>KMT</h2>
+        </div>
+    </div>
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-4">
+        <div class="row justify-content-center">
+            <div class="col-md-3">
                 <div class="article" id="big-article">
                     <h4><a href="{% url 'forum' %}">Health Forum</a></h4>
-                    <p>Question and Answer</p>
+                    <p>Share your tips and get tips from others</p>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="article" id="big-article">
                     <h4><a href="{% url 'caloriestracker' %}">Calories Tracker</a></h4>
-                    <p>Manage your calories</p>
+                    <p>Add and manage your calories</p>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="article" id="big-article">
-                    <h4><a href="{% url 'goalstracker' %}">Health Goals Tracker</a></h4>
-                    <p>Manage your health goals</p>
+                    <h4><a href="{% url 'goalstracker' %}">Health Goals</a></h4>
+                    <p>Create and manage your health goals</p>
                 </div>
             </div>
         </div>

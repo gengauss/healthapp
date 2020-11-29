@@ -32,12 +32,13 @@
     <div class="row">
     {% for mentaldisease in mentaldiseases %}
         <div class="col-lg-4 col-md-6">
+            <a href="{% url 'mentaldetail' mentaldisease.id %}">
             <div class="article" id="small-articles">
                 <img class="img-thumbnail" src="{% static 'img/note.png' %}" alt="thumbnail"><br>
                 <h4><a href="{% url 'mentaldetail' mentaldisease.id %}">{{ mentaldisease.name }}</a></h4>
 {#                <p>{{ mentaldisease.general_information }}</p>#}
-                <a>Read more</a>
             </div>
+            </a>
         </div>
     {% endfor %}
     </div>
