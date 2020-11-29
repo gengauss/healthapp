@@ -348,6 +348,18 @@ h1 {
     .main {
         padding-top: 35%;
     }
+    #navbarSupportedContent{
+        border-radius: 10px;
+        float: none;
+        background-color:rgba(0, 0, 0, 0.9);
+        padding: 40px;
+    }
+    #navbarSupportedContent form{
+        margin-top: 20px;
+    }
+    #navbarSupportedContent ul li{
+        margin-top: 10px;
+    }
 
     .sub-navbar {
         padding-top: 26%;
