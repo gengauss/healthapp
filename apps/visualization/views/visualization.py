@@ -1,13 +1,13 @@
-from bokeh.embed import components
-from bokeh.plotting import figure
+import pandas as pd
+from django.db import connection
 from django.shortcuts import render
 
 from .survey import plot_country, plot_age, plot_occupation, plot_gender, plot_water, plot_diet, plot_meals, \
-    plot_meals, plot_first_meal, plot_last_meal, plot_same_meal
-from .tools import plot_bar_chart, plot_count
+    plot_first_meal, plot_last_meal, plot_same_meal
+from .tools import plot_bar_chart, plot_count, plot_hexbin, plot_hist, plot_stacked_bar, plot_line
 from ..models import Survey, Diabetes
-from django.db import connection
-import pandas as pd
+import numpy as np
+import pandas_bokeh
 
 
 def index(request):
@@ -65,6 +65,34 @@ def diabetes_result(request):
     age = diabetes['age'].value_counts().tolist()
     script_age, div_age = plot_count(tested_cols, age, "Age")
 
+    # insu
+    x = np.array(diabetes['insu'])
+    y = np.array(diabetes['age'])
+    title = "Hexbin for insulin and age"
+    script_insu, div_insu = plot_hexbin(x, y, title)
+
+    # age distribution
+    df_dist = pd.DataFrame({
+        'tested_positive': diabetes["age"][diabetes['tested'] == 'tested_positive'],
+        'tested_negative': diabetes["age"][diabetes['tested'] == 'tested_negative']
+    }, columns=['tested_positive', 'tested_negative'])
+
+    script_dist, div_dist = plot_hist(df_dist, "Age distribution")
+
+    labels = ['Unhealthy', 'Healthy', 'Overweight', 'Obese']
+    tested = ['tested_positive', 'tested_negative']
+    data = {'labels': labels,
+            'tested_positive': [2, 7, 44, 215],
+            'tested_negative': [9, 105, 136, 250]}
+    script_stacked, div_stacked = plot_stacked_bar(labels, tested, data, "")
+
+    script_line, div_line = plot_line(diabetes[diabetes['tested'] == 'tested_positive']['age'],
+                                      diabetes[diabetes['tested'] == 'tested_positive']['insu'])
+
     data_dict = {'script_tested': script_tested, 'div_tested': div_tested,
-                 'script_age': script_age, 'div_age': div_age}
+                 'script_age': script_age, 'div_age': div_age,
+                 'script_insu': script_insu, 'div_insu': div_insu,
+                 'script_dist': script_dist, 'div_dist': div_dist,
+                 'script_stacked': script_stacked, 'div_stacked': div_stacked,
+                 'script_line': script_line, 'div_line': div_line}
     return render(request, '../templates/visualization/diabetes.html', data_dict)
