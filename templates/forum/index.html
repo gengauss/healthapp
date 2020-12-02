@@ -13,39 +13,53 @@
 </head>
 <body>
 {% include "home/navbar.html" %}
-<br><br><br>
+<div class="main">
 {% if user.is_authenticated %}
-    <p>You can submit articles from the following form.</p>
-    <form action="{% url 'forum' %}" method="post">
-      {% csrf_token %}
-      <div>
-        <label for="titleInput">Title</label>
-        <input id="titleInput" name="title" type="text" placeholder="Input title">
-      </div>
-      <div>
-        <label for="textInput">Text</label>
-        <textarea id="textInput" name="text" rows="3"></textarea>
-      </div>
-      <div>
-        <button type="submit">Submit</button>
-      </div>
-    </form>
+    <h1>Welcome to Health Forum!</h1>
+    <div class="container-fluid">
+      <div class="row">
     {% if questions %}
     {% for question in questions %}
-    <a href="{% url 'detail' question.id %}">{{ question.title }}</a>
-    <small>{{ question.posted_at }}</small>
-    <small>Like: {{ question.like }}</small>
-    <div>
+    <div class="col-md-6">
+    <a href="{% url 'detail' question.id %}">
+    <div class="article" style="text-align: left; margin-top: 20px; margin-bottom: 20px;">
+    <h2 style="color: #ff9898;">{{ question.title }}</h2>
+    <small>{{ question.posted_at }}</small><br>
+    <small style="color: red; font-weight: 600;">Like: {{ question.like }}</small>
+    <div style="margin-top: 20px;">
       {{ question.text | linebreaksbr }}
     </div>
+    </div>
+    </a>
+    </div>
     {% endfor %}
+    </div>
+    </div>
     {% else %}
     <p>No questions.</p>
     {% endif %}
+    <div class="container-fluid" style="margin-top: 80px; ">
+    <h1>If you want to ask anything</h1>
+    <form action="{% url 'forum' %}" method="post">
+      {% csrf_token %}
+      <div class="row" style="margin-bottom: 30px;">
+        <label style="font-size: 20px; font-weight: 600;" class="col-12" for="titleInput">Title</label>
+        <input class="col-12" style="border-radius: 10px;"id="titleInput" name="title" type="text" placeholder="Input title">
+      </div>
+      <div class="row" style="margin-bottom: 30px; ">
+        <label style="font-size: 20px; font-weight: 600;" class="col-12" for="textInput">What do you want to ask?</label>
+        <textarea class="col-12"style="border-radius: 10px;" id="textInput" name="text" rows="3"></textarea>
+      </div>
+      <div class="col-4">
+        <button style=" margin:0; font-size: 18px; font-weight: 600; background-color: #2E9D65; color: #ffffff; border-radius: 3px;" type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
 {% else %}
     <h1>You have to login first</h1>
     <a class="nav-link" href="{% url 'login' %}">Login</a>
 {% endif %}
+</div>
 </body>
 
 </html>

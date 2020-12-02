@@ -20,38 +20,39 @@
 </head>
 <body>
 {% include "home/navbar.html" %}
-<br><br><br>
+<div class="main">
 {% if user.is_authenticated %}
-    <div class="container">
-        <ul>
-            <li><a href="{% url 'caloriestracker' %}">Home</a></li>
-            <li><a href="{% url 'profile' %}">Profile</a></li>
-            <li><a href="{% url 'add_food' %}">Add Food</a></li>
-            <li><a href="{% url 'select_food' %}">Select Food</a></li>
-        </ul>
+<div class="nav-tracker">
+    <div class="container-fluid" style="margin-top: 20px; margin-bottom: 50px;">
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-6 col-lg-3" ><a id="normal" href="{% url 'caloriestracker' %}">Tracker</a></div>
+            <div class="col-12 col-sm-6 col-lg-3" ><a id="normal" href="{% url 'profile' %}">Goal Management</a></div>
+            <div class="col-12 col-sm-6 col-lg-3" ><a id="normal" href="{% url 'add_food' %}">Your Food List</a></div>
+            <div class="col-12 col-sm-6 col-lg-3" id="add-food-button" style="margin-top: 0; margin-bottom: 20px;"><a href="{% url 'select_food' %}">Add to tracker from list</a></div>
+        </div>
     </div>
+</div>
     <div class="container-fluid">
-        <h1 class="headline">Your Profile :</h1>
-        <div class="row mt-4 mb-4">
-            <div class="col-lg-5 card card-body">
+        <div class="row mt-4 mb-4 justify-content-center">
+            <div class="col-12 col-md-8 col-lg-7 card card-body">
                 <div class="app-title">
 
-                    <h1 class="text-center profile-text mt-2">Name: {{ request.user }} </h1>
+                    <h1 class="text-center profile-text mt-2">Hello, {{ request.user }}! </h1>
 
                 </div>
 
-                <form method="POST" action="" class="login-form pt-4">
+                <form method="POST" action="" class="login-form pt-4" style="align-items: center;">
                     {% csrf_token %}
                     {% for field in form %}
-                        <h1>Calorie Goal For Today</h1>
-                        {{ field }}
+                        <h3 style="width: 100%; float: left; text-align: center;">Let's set calories cap for today</h3>
+                        <div style="width: 30%; float:left; margin-right: 35%; margin-left: 35%;">{{ field }}</div>
                     {% endfor %}
-                    <input class="btn login_btn profile-submit ml-3" type="submit" value="select">
+                    <input class="btn login_btn profile-submit ml-3" style="width: 40%; margin-top: 25px; margin-left: 30% !important; font-size: 20px; font-weight: 600;" type="submit" value="Set!">
 
                 </form>
             </div>
 
-            <div class="col-lg-7">
+            <div class="col-lg-7" style="margin-top:70px; padding-bottom: 70px; border-bottom: solid 2px gray;">
                 <h1 class="text-center headline pb-2">Records From Past Week</h1>
                 <table class="table text-center">
                     <thead class="thead-dark">
@@ -63,8 +64,8 @@
                     </thead>
                     <tbody>
                     {% for record in records %}
-                        <tr>
-                            <td>{{ record.date }}</td>
+                        <tr  style="font-size: 18px;">
+                            <td style="font-weight: 600;">{{ record.date }}</td>
                             <td>{{ record.total_calorie }}</td>
                             <td>{{ record.calorie_goal }}</td>
 
@@ -77,9 +78,9 @@
 
         </div>
 
-        <h1 class="text-center headline">All Food Items</h1>
+        <h1 class="text-center headline" style="margin-top:70px">Food list</h1>
 
-        <div class="row mt-5">
+        <div class="col-12">
             <table class="table text-center">
                 <thead class="thead-dark">
                 <tr>
@@ -92,8 +93,8 @@
                 </thead>
                 <tbody>
                 {% for food in food_items %}
-                    <tr>
-                        <td>{{ food.name }}</td>
+                    <tr style="font-size: 18px;">
+                        <td  style="font-weight: 600;">{{ food.name }}</td>
                         <td>{{ food.calorie }}</td>
                         <td>{{ food.quantity }}</td>
                         <td><a class="btn btn-sm btn-info" href="{% url 'update_food' food.id %}">Update</a></td>
@@ -110,6 +111,7 @@
     <h1>You have to login first</h1>
     <a class="nav-link" href="{% url 'login' %}">Login</a>
 {% endif %}
+</div>
 </body>
 
 </html>

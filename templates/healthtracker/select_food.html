@@ -13,16 +13,18 @@
 </head>
 <body>
 {% include "home/navbar.html" %}
-<br><br><br>
+<div class="main">
 {% if user.is_authenticated %}
-    <div class="container">
-        <ul>
-            <li><a href="{% url 'caloriestracker' %}">Home</a></li>
-            <li><a href="{% url 'profile' %}">Profile</a></li>
-            <li><a href="{% url 'add_food' %}">Add Food</a></li>
-            <li><a href="{% url 'select_food' %}">Select Food</a></li>
-        </ul>
+<div class="nav-tracker">
+    <div class="container-fluid" style="margin-top: 20px; margin-bottom: 50px;">
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-6 col-lg-3" ><a id="normal" href="{% url 'caloriestracker' %}">Tracker</a></div>
+            <div class="col-12 col-sm-6 col-lg-3" ><a id="normal" href="{% url 'profile' %}">Goal Management</a></div>
+            <div class="col-12 col-sm-6 col-lg-3" ><a id="normal" href="{% url 'add_food' %}">Your Food List</a></div>
+            <div class="col-12 col-sm-6 col-lg-3" id="add-food-button" style="margin-top: 0; margin-bottom: 20px;"><a href="{% url 'select_food' %}">Add to tracker from list</a></div>
+        </div>
     </div>
+</div>
     <div class="login mt-0">
         <div class="login-screen">
             <div class="app-title">
@@ -34,14 +36,14 @@
                 <h5 class="form-labels">
                     {{ form.as_p }}
                 </h5>
-                <input class="btn login_btn pt-2" type="submit" value="select">
+                <input class="btn login_btn pt-2" style="margin-top: 25px; font-size: 20px; font-weight: 600;"type="submit" value="select">
 
             </form>
         </div>
 
     </div>
-    <div class="container-fluid">
-        <h1 class="headline text-center pb-3">All Food Items </h1>
+    <div class="col-12" style="margin-top: 40px; padding-top: 20px; border-top: solid 2px gray;">
+        <h1 class="headline text-center pb-3">Food list</h1>
         <table class="table table-bordered text-center">
             <thead class="thead-dark">
             <tr>
@@ -66,6 +68,6 @@
     <h1>You have to login first</h1>
     <a class="nav-link" href="{% url 'login' %}">Login</a>
 {% endif %}
+</div>
 </body>
-
 </html>

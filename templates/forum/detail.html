@@ -15,37 +15,43 @@
 </head>
 <body>
 {% include "home/navbar.html" %}
-<br><br><br>
+<div class="main">
 {% if user.is_authenticated %}
-    <h1>{{ question.title }}</h1>
-    <small>[{{ question.posted_at }}]</small>
-    <div>
-      {{ question.text | linebreaksbr }}
-    </div>
-    <div>
-    <a href="{% url 'like' question.id %}" class="btn btn-outline-dark btn-sm">Like: {{ question.like }}</a>
-      <a href="{% url 'update' question.id %}">
-        Update
+<div class="container-fluid">
+  <div class="row">
+    <h1 class="col-12 col-md-8">{{ question.title }}</h1>
+    <div class="col-12 col-md-4">
+      <div style="float: right;">
+      <a  style="margin-left:20px;" href="{% url 'update' question.id %}">
+        Edit
       </a>
-      <a href="{% url 'delete' question.id %}" class="btn btn-danger btn-xs">
+      <a  style="margin-left:20px;" href="{% url 'delete' question.id %}" class="btn btn-danger btn-xs">
         Delete
       </a>
+      </div>
     </div>
-    <h2>Comment</h2>
+  </div>
+    <small>[{{ question.posted_at }}]</small>
+    <div style="margin-top: 20px; font-size: 18px;">
+      {{ question.text | linebreaksbr }}
+    </div>
+    <div style="margin-top: 20px;">
+    <a href="{% url 'like' question.id %}" class="btn btn-outline-dark btn-sm">Like: {{ question.like }}</a>
+    </div>
+    <h2 style="margin-top: 40px;">Comment</h2>
     <form action="{% url 'detail' question.id %}" method="post">
     {% csrf_token %}
-    <div class="form-group">
-        <label for="textInput">Text</label>
-        <textarea id="textInput" name="text" class="form-control" rows="3"></textarea>
+    <div class="form-group" style="margin-top: 10px;">
+        <textarea id="textInput" name="text" class="form-control" placeholder="You can answer or comment here!" rows="3"></textarea>
     </div>
-    <div class="form-group">
+    <div class="form-group" style=" margin-bottom: 50px;font-size: 18px; font-weight: 600; ">
         <button type="submit" class="btn btn-
-        primary">Submit</button>
+        primary">Comment</button>
     </div>
     </form>
     {% if comments %}
         {% for comment in comments %}
-        <div class="card mb-3">
+        <div class="card mb-3" style="margin-top: 10px;">
             <div class="card-header">
             <small>{{ comment.posted_at }}</small>
             </div>
@@ -61,6 +67,8 @@
     <h1>You have to login first</h1>
     <a class="nav-link" href="{% url 'login' %}">Login</a>
 {% endif %}
+      </div>
+</div>
 </body>
 
 </html>

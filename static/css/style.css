@@ -11,6 +11,7 @@ html {
 
 a {
     text-decoration: none !important;
+    color: #ffffff;
 }
 
 ul {
@@ -23,7 +24,7 @@ h1 {
 
 .main {
     padding: 8%;
-    padding-top: 10%;
+    padding-top: 130px;
 }
 .article h4 a{
     color: #ff9898;
@@ -55,6 +56,68 @@ h1 {
     font-weight: 400;
 }
 
+/*styling calories tracker*/
+.nav-tracker .container-fluid #normal{
+    width: 100%;
+    margin-bottom: 20px;
+    height: auto;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 30px;
+    border: 2px solid #ff9898;
+    font-size: 20px;
+    font-weight: 500;
+    color: #ffffff !important;
+    display: block;
+    background-color: #ff9898;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.nav-tracker .container-fluid #normal:hover,.nav-tracker .container-fluid #normal:active{
+    border-color: #ce7979;
+    background-color: #ce7979;
+    cursor: pointer;
+}
+#add-food-button{
+    width: 100%;
+    margin-bottom: 10px;
+    margin-top: 30px;
+    height: auto;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 30px;
+    border: 2px solid #2E9D65;
+    font-size: 20px;
+    font-weight: 500;
+    color: #2E9D65;
+    display: block;
+    transition: 0.3s;
+    cursor: pointer;
+}
+#add-food-button:hover{
+    border-radius: 30px;
+    border: 2px solid #FFFF43;
+    font-size: 20px;
+    font-weight: 500;
+    background-color: #FFFF43;
+}
+#calories-amount{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border: 0px;
+}
+#calories-amount p{
+    font-size: 50px;
+    font-weight: 700;
+}
+th{
+    font-size: 20px;
+    font-weight: 600;
+}
+.small-description{
+    font-size: 15px;
+    font-weight: 400;
+}
 /*styling navigation bar */
 .navbar {
     padding-top: 0;
@@ -179,7 +242,6 @@ h1 {
     background-color: #2E9D65;
     cursor: pointer;
 }
-
 
 /* Styling vertical navbar */
 .vertical-navbar {
@@ -314,6 +376,28 @@ h1 {
 #profile-picture{
     width: 160px;
     height: auto;
+}
+/*Styling forum */
+.question {
+    background-color: #ffffff;
+    padding: 10%;
+    border-radius: 30px;
+    border: 2px solid #2E9D65;
+    cursor: pointer;
+    font-size: 20px;
+    transition: 0.3s;
+    color: #2E9D65 ;
+    text-align: center;
+    text-decoration: none;
+}
+
+.article:hover {
+    background-color: #2E9D65;
+    border: 2px solid #2E9D65;
+    cursor: pointer;
+    color: #f1f1f1;
+    scale: 0.5;
+    text-decoration: none !important;
 }
 /* Remove extra left and right margins, due to padding */
 
