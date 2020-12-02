@@ -377,28 +377,6 @@ th{
     width: 160px;
     height: auto;
 }
-/*Styling forum */
-.question {
-    background-color: #ffffff;
-    padding: 10%;
-    border-radius: 30px;
-    border: 2px solid #2E9D65;
-    cursor: pointer;
-    font-size: 20px;
-    transition: 0.3s;
-    color: #2E9D65 ;
-    text-align: center;
-    text-decoration: none;
-}
-
-.article:hover {
-    background-color: #2E9D65;
-    border: 2px solid #2E9D65;
-    cursor: pointer;
-    color: #f1f1f1;
-    scale: 0.5;
-    text-decoration: none !important;
-}
 /* Remove extra left and right margins, due to padding */
 
 
@@ -408,7 +386,12 @@ th{
     display: table;
     clear: both;
 }
-
+#footer{
+    color: #f1f1f1;
+    background-color: gray;
+    padding:8%;
+    margin-top: 200px;
+}
 /* Responsive columns */
 @media screen and (max-width: 600px) {
     /*styling landing page banner */
