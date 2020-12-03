@@ -4,8 +4,8 @@ from django.shortcuts import render
 
 from .survey import plot_country, plot_age, plot_occupation, plot_gender, plot_water, plot_diet, plot_meals, \
     plot_first_meal, plot_last_meal, plot_same_meal
-from .tools import plot_bar_chart, plot_count, plot_hexbin, plot_hist, plot_stacked_bar, plot_line
-from ..models import Survey, Diabetes
+from .tools import plot_bar_chart, plot_count, plot_hexbin, plot_hist, plot_stacked_bar, plot_line, box_plot
+from ..models import Survey, Diabetes, Depression
 import numpy as np
 import pandas_bokeh
 
@@ -96,3 +96,14 @@ def diabetes_result(request):
                  'script_stacked': script_stacked, 'div_stacked': div_stacked,
                  'script_line': script_line, 'div_line': div_line}
     return render(request, '../templates/visualization/diabetes.html', data_dict)
+
+
+def depression_result(request):
+    query = str(Depression.objects.all().query)
+    depression = pd.read_sql_query(query, connection)
+    yy = depression['total_ds']
+    g = depression['education']
+    script_box, div_box = box_plot(yy, g)
+
+    data_dict = {'script_box': script_box, 'div_box': div_box}
+    return render(request, '../templates/visualization/depression.html', data_dict)
