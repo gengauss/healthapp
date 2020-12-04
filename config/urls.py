@@ -24,6 +24,8 @@ urlpatterns = [
     path(r'', TemplateView.as_view(template_name='home/index.html')),
     path(r'articles/', TemplateView.as_view(template_name='home/articles.html')),
     path(r'aboutus/', TemplateView.as_view(template_name='home/aboutus.html')),
+    path(r'guidance/', TemplateView.as_view(template_name='home/guidance.html')),
+    path(r'term-and-privacy-policy/', TemplateView.as_view(template_name='home/term.html')),
     path(r'contact/', healthbook.contact, name='contact'),
     path('healthbook/', include('apps.healthbook.urls')),
     path('visualization/', include('apps.visualization.urls')),
