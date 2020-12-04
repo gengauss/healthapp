@@ -13,14 +13,31 @@
 </head>
 <body>
 {% include "home/navbar.html" %}
-<div>
-    <h2>{{ mentaldiseases.name | linebreaksbr }}</h2>
+<div class="vertical-navbar">
     <ul>
-        <li>General Information: {{ mentaldiseases.general_information | linebreaksbr }}</li>
-        <li>Symptoms: {{ mentaldiseases.symptoms | linebreaksbr }}</li>
-        <li>Prevention: {{ mentaldiseases.prevention | linebreaksbr }}</li>
-        <li>Treatment: {{ mentaldiseases.treatment | linebreaksbr }}</li>
+        <li id="physical-health-button"><a href="#general-information">General Information</a></li>
+        <li id="mental-health-button"><a href="#symtomp">Symptoms</a></li>
+        <li id="mental-health-button"><a href="#diagnosis">Diagnosis</a></li>
+        <li id="mental-health-button"><a href="#causes">Causes</a></li>
+        <li id="mental-health-button"><a href="#prevention">Prevention</a></li>
+        <li id="mental-health-button"><a href="#treatment">Treatment</a></li>
+        <li id="mental-health-button"><a href="#source">Source</a></li>
     </ul>
+</div>
+<div class="main" id="healthbook">
+<div>
+{#    <img class="img-fluid" class="function-icon" src="{% static 'thumbnail/depression-cover.jpg' %}" alt="cover">#}
+    <h2>{{ mentaldiseases.name | linebreaksbr }}</h2>
+    <ul class="detail-disease" style="padding: 0;">
+        <li id="general-information"><h4>General Information</h4> {{ mentaldiseases.general_information | linebreaksbr }}</li>
+        <li id="symptom"><h4>Symptoms</h4> {{ mentaldiseases.symptoms | linebreaksbr }}</li>
+        <li id="diagnosis"><h4>Diagnosis</h4> {{ mentaldiseases.diagnosis | linebreaksbr }}</li>
+        <li id="causes"><h4>Causes</h4> {{ mentaldiseases.cause | linebreaksbr }}</li>
+        <li id="prevention"><h4>Prevention</h4> {{ mentaldiseases.prevention | linebreaksbr }}</li>
+        <li id="treatment"><h4>Treatment</h4> {{ mentaldiseases.treatment | linebreaksbr }}</li>
+        <li id="source"><h4>URL</h4> <a>{{ mentaldiseases.url | linebreaksbr }}</a></li>
+    </ul>
+</div>
 </div>
 </body>
 

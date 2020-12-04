@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apps.healthbook',
     'apps.visualization',
+    'apps.healthtracker',
 ]
 
 MIDDLEWARE = [
@@ -67,6 +68,10 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+
+            'libraries':{
+                'templatetag': 'apps.healthtracker.views.templatetag',
+            }
         },
     },
 ]

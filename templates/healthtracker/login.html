@@ -14,12 +14,14 @@
 <body>
 {% include "home/navbar.html" %}
 {% block content %}
-    <br><br>
-    <div class="content-section">
+<div class="main">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+        <div col-md-3 style="border: solid; border-color: #2E9D65; border-radius: 20px; padding: 40px;">
         <form method="POST">
             {% csrf_token %}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Login</legend>
+            <fieldset class="form-group" style="width: 100%; padding: 40px;">
+                <legend class="border-bottom mb-4">Welcome!</legend>
                 {{ form }}
             </fieldset>
             <div class="form-group">
@@ -27,11 +29,14 @@
             </div>
         </form>
         <div class="border-top pt-3">
-            <small class="text-muted">
+            <small class="text-muted" style="color: white;">
                 Need An Account? <a class="ml-2" href="{% url 'register' %}">Sign Up Now</a>
             </small>
         </div>
+        </div>
+    </div>    
     </div>
 {% endblock content %}
+</div>
 </body>
 </html>

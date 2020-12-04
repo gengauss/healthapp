@@ -15,17 +15,36 @@
 <body>
 {% include "home/navbar.html" %}
 {% block content %}
+<br><br><br>
 <div class="container">
-    <div class="col">
-        <div class="row">
-            <div class="col-sm-8">
-                {{ div_tested | safe }}
-                {{ script_tested | safe }}
-            </div>
-            <div class="col-sm-8">
-                {{ div_age | safe }}
-                {{ script_age | safe }}
-            </div>
+    <div class="row">
+        <div class="col-lg-6">
+            {{ div_tested | safe }}
+            {{ script_tested | safe }}
+        </div>
+        <div class="col-lg-6">
+            {{ div_age | safe }}
+            {{ script_age | safe }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            {{ div_insu | safe }}
+            {{ script_insu | safe }}
+        </div>
+        <div class="col-lg-6">
+            {{ div_dist | safe }}
+            {{ script_dist | safe }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            {{ div_stacked | safe }}
+            {{ script_stacked | safe }}
+        </div>
+        <div class="col-lg-6">
+            {{ div_line | safe }}
+            {{ script_line | safe }}
         </div>
     </div>
 </div>
