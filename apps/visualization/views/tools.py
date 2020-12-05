@@ -18,11 +18,11 @@ def plot_bar_chart(cols, counts, title):
     return script, div
 
 
-def plot_count(cols, counts, title):
+def plot_count(cols, counts, title, fill_color):
     p = figure(x_range=cols, plot_height=350, title=title,
                toolbar_location=None, tools="")
 
-    p.vbar(x=cols, top=counts, width=0.9)
+    p.vbar(x=cols, top=counts, width=0.9, fill_color=fill_color)
     p.xgrid.grid_line_color = None
     p.y_range.start = 0
     script, div = components(p)
@@ -49,7 +49,7 @@ def plot_hexbin(x, y, title):
 def plot_hist(df, title):
     p = df.plot_bokeh(
         kind="hist",
-        bins=np.arange(-20, 120, 10),
+        bins=np.arange(0, 10),
         vertical_xlabel=False,
         xlabel="Age",
         normed=1000,
@@ -118,7 +118,8 @@ def box_plot(yy, g):
             outx.append(keys[0])
             outy.append(out.loc[keys[0]].loc[keys[1]])
 
-    p = figure(tools="", background_fill_color="#efefef", x_range=lists, toolbar_location=None)
+    p = figure(tools="", background_fill_color="white", x_range=lists, toolbar_location=None,
+               plot_height=540)
 
     # if no outliers, shrink lengths of stems to be no longer than the minimums or maximums
     qmin = groups.quantile(q=0.00)
@@ -139,8 +140,8 @@ def box_plot(yy, g):
     p.rect(lists, upper.score, 0.2, 0.01, line_color="black")
 
     # outliers
-    if not out.empty:
-        p.circle(outx, outy, size=6, color="#F38630", fill_alpha=0.6)
+    # if not out.empty:
+    #     p.circle(outx, outy, size=6, color="#F38630", fill_alpha=0.6)
 
     p.xgrid.grid_line_color = None
     p.ygrid.grid_line_color = "white"
