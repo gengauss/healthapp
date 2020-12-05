@@ -56,3 +56,7 @@ def contact(request):
         contact_form = Contact(name=request.POST['name'], email=request.POST['email'], feedback=request.POST['feedback'])
         contact_form.save()
     return render(request, '../templates/home/contact.html', {})
+
+
+def feedback(request):
+    return render(request, '../templates/home/feedback.html', {})
