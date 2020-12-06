@@ -49,7 +49,7 @@ def plot_hexbin(x, y, title):
 def plot_hist(df, title):
     p = df.plot_bokeh(
         kind="hist",
-        bins=np.arange(0, 10),
+        bins=np.arange(0, 100, 4),
         vertical_xlabel=False,
         xlabel="Age",
         normed=1000,
