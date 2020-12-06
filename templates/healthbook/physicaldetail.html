@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Health App</title>
+    <title>{{ physicaldiseases.name }}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
@@ -35,7 +35,7 @@
         <li id="causes"><h4>Causes</h4> {{ physicaldiseases.cause | linebreaksbr }}</li>
         <li id="prevention"><h4>Prevention</h4> {{ physicaldiseases.prevention | linebreaksbr }}</li>
         <li id="treatment"><h4>Treatment</h4> {{ physicaldiseases.treatment | linebreaksbr }}</li>
-        <li id="source"><h4>URL</h4> <a>{{ physicaldiseases.url | linebreaksbr }}</a></li>
+        <li id="source"><h4>URL</h4> <a href="{{ physicaldiseases.url }}">{{ physicaldiseases.url | linebreaksbr }}</a></li>
     </ul>
 </div>
 </div>
