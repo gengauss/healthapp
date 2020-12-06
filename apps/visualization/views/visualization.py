@@ -59,11 +59,12 @@ def diabetes_result(request):
     tested_counts = diabetes['tested'].value_counts().tolist()
     tested = {'tested': tested_cols, 'counts': tested_counts}
     tested_df = pd.DataFrame(tested)
-    script_tested, div_tested = plot_count(tested_df['tested'], tested_df['counts'], "Tested Counts")
+    fill_color = ["#097E8F", "#ECC14D"]
+    script_tested, div_tested = plot_count(tested_df['tested'], tested_df['counts'], "Tested Counts", fill_color)
 
     # age
     age = diabetes['age'].value_counts().tolist()
-    script_age, div_age = plot_count(tested_cols, age, "Age")
+    script_age, div_age = plot_count(tested_cols, age, "Age", fill_color)
 
     # insu
     x = np.array(diabetes['insu'])
@@ -105,5 +106,21 @@ def depression_result(request):
     g = depression['education']
     script_box, div_box = box_plot(yy, g)
 
-    data_dict = {'script_box': script_box, 'div_box': div_box}
+    labels = ['Unemployed', 'Agriculturist', 'Employee', 'Vendor']
+    counts = [10, 9, 8.4, 10.4]
+    df = {'labels': labels, 'counts': counts}
+    df = pd.DataFrame(df)
+    fill_color = ["#313557", "#2B73AC", "#379386", "#50C7B6"]
+    script_bar, div_bar = plot_count(df['labels'], df['counts'], "", fill_color)
+
+    df_dist = pd.DataFrame({
+        'Good relationship': depression["total_ds"][depression['relationship_with_family'] == 2],
+        'Bad relationship': depression["total_ds"][depression['relationship_with_family'] == 1]
+    }, columns=['Good relationship', 'Bad relationship'])
+
+    script_dist, div_dist = plot_hist(df_dist, "Bad relationships cause higher depression rate")
+
+    data_dict = {'script_box': script_box, 'div_box': div_box,
+                 'script_bar': script_bar, 'div_bar': div_bar,
+                 'script_dist': script_dist, 'div_dist': div_dist}
     return render(request, '../templates/visualization/depression.html', data_dict)

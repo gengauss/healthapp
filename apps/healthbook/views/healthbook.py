@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from ..models import MentalInfo, PhysicalInfo, Contact
+from ..models import MentalInfo, PhysicalInfo, Contact, Feedback
 
 
 def index(request):
@@ -56,3 +56,33 @@ def contact(request):
         contact_form = Contact(name=request.POST['name'], email=request.POST['email'], feedback=request.POST['feedback'])
         contact_form.save()
     return render(request, '../templates/home/contact.html', {})
+
+
+def feedback(request):
+    if request.method == 'POST':
+        feedback_form = Feedback(hb_content=request.POST.get('hb_content', False),
+                                 hb_design=request.POST.get('hb_design', False),
+                                 hb_change=request.POST.get('hb_change', False),
+                                 hb_feedback=request.POST.get('hb_feedback', False),
+                                 vs_content=request.POST.get('vs_content', False),
+                                 vs_design=request.POST.get('vs_design', False),
+                                 vs_change=request.POST.get('vs_change', False),
+                                 vs_feedback=request.POST.get('vs_feedback', False),
+                                 fr_design=request.POST.get('fr_design', False),
+                                 fr_use=request.POST.get('fr_use', False),
+                                 fr_opinion=request.POST.get('fr_opinion', False),
+                                 fr_change=request.POST.get('fr_change', False),
+                                 fr_feedback=request.POST.get('fr_feedback', False),
+                                 ct_design=request.POST.get('ct_design', False),
+                                 ct_use=request.POST.get('ct_use', False),
+                                 ct_opinion=request.POST.get('ct_opinion', False),
+                                 ct_change=request.POST.get('ct_change', False),
+                                 ct_feedback=request.POST.get('ct_feedback', False),
+                                 hg_design=request.POST.get('hg_design', False),
+                                 hg_use=request.POST.get('hg_use', False),
+                                 hg_opinion=request.POST.get('hg_opinion', False),
+                                 hg_change=request.POST.get('hg_change', False),
+                                 hg_feedback=request.POST.get('hg_feedback', False)
+                                 )
+        feedback_form.save()
+    return render(request, '../templates/home/feedback.html', {})

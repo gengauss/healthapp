@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Health Books</title>
+    <title>HealthBook - Physical Health</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
@@ -35,8 +35,7 @@
             <div class="article" id="small-articles">
                 <img class="img-thumbnail" src="{% static 'img/note.png' %}" alt="thumbnail"><br>
                 <h4><a href="{% url 'physicaldetail' physicaldisease.id %}">{{ physicaldisease.name }}</a></h4>
-{#                <p>{{ physicaldisease.general_information }}</p>#}
-                <a>Read more</a>
+                <a href="{% url 'physicaldetail' physicaldisease.id %}">Read more</a>
             </div>
         </div>
     {% endfor %}
