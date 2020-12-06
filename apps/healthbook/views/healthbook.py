@@ -60,7 +60,7 @@ def contact(request):
 
 def feedback(request):
     if request.method == 'POST':
-        feedback_form = Feedback(hb_content=request.POST['hb_content'],
+        feedback_form = Feedback(hb_content=request.POST.get('hb_content', False),
                                  hb_design=request.POST.get('hb_design', False),
                                  hb_change=request.POST.get('hb_change', False),
                                  hb_feedback=request.POST.get('hb_feedback', False),
