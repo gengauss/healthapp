@@ -26,7 +26,7 @@
     }
 
     .item-row {
-        background-color: #2E9D65;
+        background-color: #ff9898;
         margin: 10px;
         padding: 20px;
         border-radius: 3px;
@@ -35,12 +35,16 @@
     }
 
     .save {
-        background-color: #2E9D65;
+        background-color: #D3D3D3;
         color: white;
     }
 
     .timer {
-        background-color: #dc3545;
+        width: 150px;
+        height: auto;
+        font-weight: 600;
+        font-size: 18px;
+        background-color: #ce7979;
         border-radius: 5px;
         padding: 5px;
     }
@@ -90,7 +94,7 @@
 
     .box .percent svg circle:nth-child(2) {
         stroke-dashoffset: calc(620 - (620 * 87) / 100);
-        stroke: #03a9f4;
+        stroke: white;
     }
 
     .box .percent .number {
@@ -154,8 +158,8 @@
                             </div>
                         </div>
                     {% endif %}
-                    <a class="btn btn-sm btn-light" href="{% url 'update_goal' goal.id %}">Update</a>
-                    <a class="btn btn-sm btn-danger" href="{% url 'delete_goal' goal.id %}">Delete</a>
+                    <a  style="width: 100px; height: auto; font-size: 18px; font-weight: 600;"class="btn btn-sm btn-light" href="{% url 'update_goal' goal.id %}">Update</a>
+                    <a style="width: 100px; height: auto; font-size: 18px; font-weight: 600;" class="btn btn-sm btn-danger" href="{% url 'delete_goal' goal.id %}">Delete</a>
                 </div>
             {% endfor %}
         </div>
