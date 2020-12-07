@@ -23,10 +23,10 @@
     <div class="col-12 col-md-4">
       <div style="float: right;">
       <a  style="margin-left:20px;" href="{% url 'update' question.id %}">
-        Edit
+        編集
       </a>
       <a  style="margin-left:20px;" href="{% url 'delete' question.id %}" class="btn btn-danger btn-xs">
-        Delete
+        消す
       </a>
       </div>
     </div>
@@ -36,9 +36,9 @@
       {{ question.text | linebreaksbr }}
     </div>
     <div style="margin-top: 20px;">
-    <a href="{% url 'like' question.id %}" class="btn btn-outline-dark btn-sm">Like: {{ question.like }}</a>
+    <a href="{% url 'like' question.id %}" class="btn btn-outline-dark btn-sm">いいね！: {{ question.like }}</a>
     </div>
-    <h2 style="margin-top: 40px;">Comment</h2>
+    <h2 style="margin-top: 40px;">コメント</h2>
     <form action="{% url 'detail' question.id %}" method="post">
     {% csrf_token %}
     <div class="form-group" style="margin-top: 10px;">
@@ -46,7 +46,7 @@
     </div>
     <div class="form-group" style=" margin-bottom: 50px;font-size: 18px; font-weight: 600; ">
         <button type="submit" class="btn btn-
-        primary">Comment</button>
+        primary">コメント</button>
     </div>
     </form>
     {% if comments %}
@@ -61,7 +61,7 @@
         </div>
         {% endfor %}
     {% else %}
-        <p>No comment.</p>
+        <p>コメントがまだありません。</p>
     {% endif %}
 {% else %}
     <h1>You have to login first</h1>

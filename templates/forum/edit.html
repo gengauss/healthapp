@@ -16,19 +16,19 @@
 <div class="main">
 {% if user.is_authenticated %}
     <div class="container-fluid" style="margin-top: 80px; ">
-      <h1>If you want to ask anything</h1>
+      <h1>何か質問があれば</h1>
       <form action="{% url 'forum' %}" method="post">
         {% csrf_token %}
         <div class="row" style="margin-bottom: 30px;">
-          <label style="font-size: 20px; font-weight: 600;" class="col-12" for="titleInput">Title</label>
+          <label style="font-size: 20px; font-weight: 600;" class="col-12" for="titleInput">タイトル</label>
           <input class="col-12" style="border-radius: 10px;"id="titleInput" name="title" type="text" value="{{ question.title }}">
         </div>
         <div class="row" style="margin-bottom: 30px; ">
-          <label style="font-size: 20px; font-weight: 600;" class="col-12" for="textInput">What do you want to ask?</label>
+          <label style="font-size: 20px; font-weight: 600;" class="col-12" for="textInput">聞きたいことは？</label>
           <textarea class="col-12"style="border-radius: 10px;" id="textInput" name="text" rows="3">{{ question.text }}</textarea>
         </div>
         <div class="col-4">
-          <button style=" margin:0; font-size: 18px; font-weight: 600; background-color: #2E9D65; color: #ffffff; border-radius: 3px;" type="submit">Update</button>
+          <button style=" margin:0; font-size: 18px; font-weight: 600; background-color: #2E9D65; color: #ffffff; border-radius: 3px;" type="submit">アップデート</button>
         </div>
       </form>
     </div>

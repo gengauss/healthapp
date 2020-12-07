@@ -58,10 +58,10 @@
 <br><br><br>
 {% if user.is_authenticated %}
     <div class="container">
-        <b>Deleting "<span style="color: red;">{{item}}</span>" is parmanent... do you want to proceed?</b><br>
-	    <a class="btn btn-sm btn-success myButton" href="{% url 'goalstracker' %}" >No</a>
+        <b><span style="color: red;">{{item}}</span>を消しますか。</b><br>
+	    <a class="btn btn-sm btn-success myButton" href="{% url 'goalstracker' %}" >キャンセル</a>
         <form method="POST" action="">{% csrf_token %}
-            <input class="btn btn-sm btn-danger" type="submit" value="Yes" name="Yes">
+            <input class="btn btn-sm btn-danger" type="submit" value="確認" name="Yes">
         </form>
     </div>
 {% else %}
