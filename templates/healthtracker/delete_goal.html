@@ -47,11 +47,15 @@
     .save {
         background-color: #2E9D65;
         color: white;
+        margin-top: 10px;
     }
 
-    .myButton {
+    .cancel {
+        background-color: #ce7979;
+        color: white;
         width: 100%;
     }
+
 </style>
 <body>
 {% include "home/navbar.html" %}
@@ -59,9 +63,9 @@
 {% if user.is_authenticated %}
     <div class="container">
         <b><span style="color: red;">{{item}}</span>を消しますか。</b><br>
-	    <a class="btn btn-sm btn-success myButton" href="{% url 'goalstracker' %}" >キャンセル</a>
+	    <a class="btn cancel" href="{% url 'goalstracker' %}" >キャンセル</a>
         <form method="POST" action="">{% csrf_token %}
-            <input class="btn btn-sm btn-danger" type="submit" value="確認" name="Yes">
+            <input class="btn save" type="submit" value="確認" name="Yes">
         </form>
     </div>
 {% else %}
