@@ -12,7 +12,8 @@ from apps.healthtracker.filters import FoodFilter
 
 @login_required(login_url='login')
 def index(request):
-    return render(request, '../templates/healthtracker/index.html', {})
+    person = Profile.objects.filter(person_of=request.user).last()
+    return render(request, '../templates/healthtracker/index.html', {'person': person})
 
 
 def register(request):
