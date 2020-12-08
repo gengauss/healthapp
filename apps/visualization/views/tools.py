@@ -2,14 +2,15 @@ import math
 
 import numpy as np
 from bokeh.embed import components
-from bokeh.models import HoverTool
+from bokeh.models import HoverTool, FactorRange, ColumnDataSource
 from bokeh.plotting import figure
+from bokeh.transform import factor_cmap
 
 
-def plot_bar_chart(cols, counts, title):
-    p = figure(plot_height=350, title=title, toolbar_location=None, tools="")
+def plot_bar_chart(cols, counts, title, fill_color):
+    p = figure(plot_height=350, plot_width=550, title=title, toolbar_location=None, tools="")
 
-    p.vbar(x=cols, top=counts, width=0.9, line_color='white')
+    p.vbar(x=cols, top=counts, width=0.9, line_color='white', fill_color=fill_color)
 
     p.xgrid.grid_line_color = None
     p.y_range.start = 0
@@ -151,5 +152,41 @@ def box_plot(yy, g):
 
     # or alternatively:
     p.xaxis.major_label_orientation = "vertical"
+    script, div = components(p)
+    return script, div
+
+
+def plot_nested_bar(cols, classes, data, title):
+    x = [(col, classs) for col in cols for classs in classes]
+    counts = sum(zip(data['1'], data['2'], data['3'], data['4'], data['5'], data['6'], data['7']), ())
+
+    source = ColumnDataSource(data=dict(x=x, counts=counts))
+    p = figure(x_range=FactorRange(*x), plot_height=400, plot_width=1100, title=title,
+               toolbar_location=None, tools="")
+    palette = ["#FFA69E", "#FAF3DD", "#B8F2E6", "#AED9E0", "#5E6472", "#BB7E8C"]
+    p.vbar(x='x', top='counts', width=0.9, source=source, fill_color=factor_cmap('x', palette=palette, factors=classes,
+                                                                                 start=1, end=2))
+
+    p.x_range.range_padding = 0.1
+    p.xgrid.grid_line_color = None
+    script, div = components(p)
+    return script, div
+
+
+def plot_nested_bar1(cols, classes, data, title):
+    x = [(col, classs) for col in cols for classs in classes]
+    counts = sum(zip(data['Not at all'], data['Heard of it'], data['Not so much'], data['Relatively know'], data['Very detailed']), ())
+
+    source = ColumnDataSource(data=dict(x=x, counts=counts))
+    p = figure(x_range=FactorRange(*x), plot_height=400, plot_width=1100, title=title,
+               toolbar_location=None, tools="")
+    palette = ["#FFA69E", "#FAF3DD", "#B8F2E6", "#AED9E0"]
+    p.vbar(x='x', top='counts', width=0.9, source=source, fill_color=factor_cmap('x', palette=palette, factors=classes,
+                                                                                 start=1, end=2))
+
+    p.y_range.start = 0
+    p.x_range.range_padding = 0.1
+    p.xaxis.major_label_orientation = 1
+    p.xgrid.grid_line_color = None
     script, div = components(p)
     return script, div
