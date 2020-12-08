@@ -21,7 +21,7 @@
         <form method="POST">
             {% csrf_token %}
             <fieldset class="form-group" style="width: 100%; padding: 40px;">
-                <legend class="border-bottom mb-4">Welcome!</legend>
+                <legend class="border-bottom mb-4">ようこそ!</legend>
                 {{ form }}
             </fieldset>
             <div class="form-group">
@@ -30,7 +30,7 @@
         </form>
         <div class="border-top pt-3">
             <small class="text-muted" style="color: white;">
-                Need An Account? <a class="ml-2" href="{% url 'register' %}">Sign Up Now</a>
+                アカウントを作りますか？ <a class="ml-2" href="{% url 'register' %}">Sign Upへどうぞ</a>
             </small>
         </div>
         </div>
