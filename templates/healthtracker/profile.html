@@ -18,9 +18,9 @@
 <div class="nav-tracker">
     <div class="container-fluid" style="margin-top: 20px; margin-bottom: 50px;">
         <div class="row justify-content-center">
-            <div class="col-12 col-sm-6 col-lg-3" ><a id="normal" href="{% url 'caloriestracker' %}">トラッカー</a></div>
+            <div class="col-12 col-sm-6 col-lg-3" ><a id="normal" href="{% url 'caloriestracker' %}">記録</a></div>
             <div class="col-12 col-sm-6 col-lg-3" ><a id="normal" href="{% url 'profile' %}">ゴール管理</a></div>
-            <div class="col-12 col-sm-6 col-lg-3" ><a id="normal" href="{% url 'add_food' %}">あなたのリスト</a></div>
+            <div class="col-12 col-sm-6 col-lg-3" ><a id="normal" href="{% url 'add_food' %}">Food List</a></div>
             <div class="col-12 col-sm-6 col-lg-3" id="add-food-button" style="margin-top: 0; margin-bottom: 20px;"><a href="{% url 'select_food' %}">リストから追加</a></div>
         </div>
     </div>
@@ -30,14 +30,14 @@
             <div class="col-12 col-md-8 col-lg-7 card card-body">
                 <div class="app-title">
 
-                    <h1 class="text-center profile-text mt-2">こんにちは！, {{ request.user }}! </h1>
+                    <h1 class="text-center profile-text mt-2">こんにちは！ {{ request.user }} </h1>
 
                 </div>
 
                 <form method="POST" action="" class="login-form pt-4" style="align-items: center;">
                     {% csrf_token %}
                     {% for field in form %}
-                        <h3 style="width: 100%; float: left; text-align: center;">今日のカロリー目標セットしよう！</h3>
+                        <h3 style="width: 100%; float: left; text-align: center;">今日のカロリー目標をセットしよう！</h3>
                         <div style="width: 30%; float:left; margin-right: 35%; margin-left: 35%;">{{ field }}</div>
                     {% endfor %}
                     <input class="btn login_btn profile-submit ml-3" style="width: 40%; margin-top: 25px; margin-left: 30% !important; font-size: 20px; font-weight: 600;" type="submit" value="Set!">
@@ -51,7 +51,7 @@
                     <thead class="thead-dark">
                     <tr>
                         <th scope="col">日付</th>
-                        <th scope="col">消費カロリー</th>
+                        <th scope="col">摂取カロリー</th>
                         <th scope="col">目標カロリー</th>
                     </tr>
                     </thead>
@@ -71,7 +71,7 @@
 
         </div>
 
-        <h1 class="text-center headline" style="margin-top:70px">Food list</h1>
+        <h1 class="text-center headline" style="margin-top:70px">Food List</h1>
 
         <div class="col-12">
             <table class="table text-center">

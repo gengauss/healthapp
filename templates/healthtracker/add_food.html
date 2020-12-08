@@ -18,9 +18,9 @@
 <div class="nav-tracker">
     <div class="container-fluid" style="margin-top: 20px; margin-bottom: 50px;">
         <div class="row justify-content-center">
-            <div class="col-12 col-sm-6 col-lg-3" ><a id="normal" href="{% url 'caloriestracker' %}">トラッカー</a></div>
+            <div class="col-12 col-sm-6 col-lg-3" ><a id="normal" href="{% url 'caloriestracker' %}">記録</a></div>
             <div class="col-12 col-sm-6 col-lg-3" ><a id="normal" href="{% url 'profile' %}">ゴール管理</a></div>
-            <div class="col-12 col-sm-6 col-lg-3" ><a id="normal" href="{% url 'add_food' %}">あなたのリスト</a></div>
+            <div class="col-12 col-sm-6 col-lg-3" ><a id="normal" href="{% url 'add_food' %}">Food List</a></div>
             <div class="col-12 col-sm-6 col-lg-3" id="add-food-button" style="margin-top: 0; margin-bottom: 20px;"><a href="{% url 'select_food' %}">リストから追加</a></div>
         </div>
     </div>
@@ -32,7 +32,7 @@
                     <div class="login-screen">
                         <div class="app-title">
                             <h1 class="headline">Add Food</h1>
-                            <p class="small-description">Type in the information of your food here!</p>
+                            <p class="small-description">食べ物の情報を入力してください!</p>
                         </div>
 
                         <form method="POST" action="" class="login-form form-inline">
@@ -58,7 +58,7 @@
                     <div class="login-screen">
                         <form method="get">
                             <h1 class="headline">{{ myFilter.form }}</h1>
-                            <p class="small-description">追加済みの食料検査</p>
+                            <p class="small-description">追加済みの食べ物を検索</p>
                             <button class="btn mt-2" type="submit" style="width: 80%; margin-top: 25px; font-size: 20px; font-weight: 600;">Search</button>
                         </form>
                     </div>

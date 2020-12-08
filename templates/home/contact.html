@@ -15,7 +15,7 @@
 {% include "home/navbar.html" %}
 <div class="main">
     <h1>Contact</h1>
-    <p>If you have anything about the website, please let us know!</p>
+    <p>このサイトについて何かお気づきの点がありましたら、ぜひご連絡ください。</p>
 <form id="contact_form" action="{% url 'contact' %}" method="POST">
     {% csrf_token %}
   <div class="form-group">
@@ -25,7 +25,7 @@
   <div class="form-group">
     <label for="email">E-mail</label>
     <input type="email" class="form-control" id="email" name="email" placeholder="例：abc123@gmail.com">
-    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    <small id="emailHelp" class="form-text text-muted">ご入力していただいたメールアドレスは返答のご連絡のみに使用いたします。</small>
   </div>
   <div class="form-group">
     <label for="feedback">Feedback</label>
@@ -33,8 +33,8 @@
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
-<h1>Or reach us through social media!</h1>
-<img src="{% static 'img/icons/twitter.png' %}" href="" style="width: 10%;height: auto; cursor: pointer;">
+    <h1>またはソーシャル<a href="https://twitter.com/digi_h2020">メディア</a>からご連絡ください！</h1>
+<img src="{% static 'img/icons/twitter.png' %}" style="width: 10%;height: auto; cursor: pointer;">
 </div>
 {% include "home/footer.html" %}
 </body>
