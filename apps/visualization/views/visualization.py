@@ -172,11 +172,19 @@ def depression_result(request):
     dep_symptoms = dep_symptoms.replace([0, 1, 2, 3], ['Most of the time', 'Sometimes', 'Not very often', 'Not at all'])
     df1 = dep_symptoms.melt(var_name='columns', value_name='index')
     result = pd.crosstab(index=df1['index'], columns=df1['columns'])
-    # script_hm, div_hm = plot_heatmap(result, '', '', "")
+
+    from bokeh.sampledata.unemployment1948 import data
+
+    # data['index'] = data['index'].astype(str)
+    # data = data.set_index('index')
+    # data.drop('Annual', axis=1, inplace=True)
+    # data.columns.name = 'Month'
+
+    script_hm, div_hm = plot_heatmap(result)
 
     data_dict = {'script_box': script_box, 'div_box': div_box,
                  'script_bar': script_bar, 'div_bar': div_bar,
                  'script_dist': script_dist, 'div_dist': div_dist,
-                 # 'script_hm': script_hm, 'div_hm': div_hm
-    }
+                 'script_hm': script_hm, 'div_hm': div_hm
+                 }
     return render(request, '../templates/visualization/depression.html', data_dict)
