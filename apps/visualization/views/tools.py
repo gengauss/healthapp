@@ -120,7 +120,7 @@ def box_plot(yy, g):
             outy.append(out.loc[keys[0]].loc[keys[1]])
 
     p = figure(tools="", background_fill_color="white", x_range=lists, toolbar_location=None,
-               plot_height=540)
+               plot_height=540, plot_width=550)
 
     # if no outliers, shrink lengths of stems to be no longer than the minimums or maximums
     qmin = groups.quantile(q=0.00)
@@ -144,8 +144,9 @@ def box_plot(yy, g):
     # if not out.empty:
     #     p.circle(outx, outy, size=6, color="#F38630", fill_alpha=0.6)
 
+    p.y_range.start = 0
+    p.x_range.range_padding = 0.1
     p.xgrid.grid_line_color = None
-    p.ygrid.grid_line_color = "white"
     p.grid.grid_line_width = 2
     p.xaxis.major_label_text_font_size = "16px"
     p.xaxis.major_label_orientation = math.pi/2
@@ -188,5 +189,12 @@ def plot_nested_bar1(cols, classes, data, title):
     p.x_range.range_padding = 0.1
     p.xaxis.major_label_orientation = 1
     p.xgrid.grid_line_color = None
+    script, div = components(p)
+    return script, div
+
+
+def plot_heatmap(data, x, y, title):
+    p = figure()
+    p.rect(data, x=x, y=y, values='score', title=title, stat=None)
     script, div = components(p)
     return script, div

@@ -5,7 +5,7 @@ from django.shortcuts import render
 from .survey import plot_country, plot_age, plot_occupation, plot_gender, plot_water, plot_diet, plot_meals, \
     plot_first_meal, plot_last_meal, plot_same_meal, plot_stress, plot_mental_diseases
 from .tools import plot_bar_chart, plot_count, plot_hexbin, plot_hist, plot_stacked_bar, plot_line, box_plot, \
-    plot_nested_bar, plot_nested_bar1
+    plot_nested_bar, plot_nested_bar1, plot_heatmap
 from ..models import Survey, Diabetes, Depression
 import numpy as np
 import pandas_bokeh
@@ -165,9 +165,18 @@ def depression_result(request):
         'Bad relationship': depression["total_ds"][depression['relationship_with_family'] == 1]
     }, columns=['Good relationship', 'Bad relationship'])
 
-    script_dist, div_dist = plot_hist(df_dist, "Bad relationships cause higher depression rate")
+    script_dist, div_dist = plot_hist(df_dist, np.arange(0, 30, 1), "Bad relationships cause higher depression rate",
+                                      "Bad relationships cause higher depression rate")
+
+    dep_symptoms = depression.loc[:, 'ds1':'ds10']
+    dep_symptoms = dep_symptoms.replace([0, 1, 2, 3], ['Most of the time', 'Sometimes', 'Not very often', 'Not at all'])
+    df1 = dep_symptoms.melt(var_name='columns', value_name='index')
+    result = pd.crosstab(index=df1['index'], columns=df1['columns'])
+    # script_hm, div_hm = plot_heatmap(result, '', '', "")
 
     data_dict = {'script_box': script_box, 'div_box': div_box,
                  'script_bar': script_bar, 'div_bar': div_bar,
-                 'script_dist': script_dist, 'div_dist': div_dist}
+                 'script_dist': script_dist, 'div_dist': div_dist,
+                 # 'script_hm': script_hm, 'div_hm': div_hm
+    }
     return render(request, '../templates/visualization/depression.html', data_dict)
