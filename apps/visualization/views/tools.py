@@ -2,14 +2,15 @@ import math
 
 import numpy as np
 from bokeh.embed import components
-from bokeh.models import HoverTool
+from bokeh.models import HoverTool, FactorRange, ColumnDataSource
 from bokeh.plotting import figure
+from bokeh.transform import factor_cmap
 
 
-def plot_bar_chart(cols, counts, title):
-    p = figure(plot_height=350, title=title, toolbar_location=None, tools="")
+def plot_bar_chart(cols, counts, title, fill_color):
+    p = figure(plot_height=350, plot_width=550, title=title, toolbar_location=None, tools="")
 
-    p.vbar(x=cols, top=counts, width=0.9, line_color='white')
+    p.vbar(x=cols, top=counts, width=0.9, line_color='white', fill_color=fill_color)
 
     p.xgrid.grid_line_color = None
     p.y_range.start = 0
@@ -19,7 +20,7 @@ def plot_bar_chart(cols, counts, title):
 
 
 def plot_count(cols, counts, title, fill_color):
-    p = figure(x_range=cols, plot_height=350, title=title,
+    p = figure(x_range=cols, plot_height=350, plot_width=550, title=title,
                toolbar_location=None, tools="")
 
     p.vbar(x=cols, top=counts, width=0.9, fill_color=fill_color)
@@ -30,7 +31,7 @@ def plot_count(cols, counts, title, fill_color):
 
 
 def plot_hexbin(x, y, title):
-    p = figure(title=title, match_aspect=True, plot_height=370,
+    p = figure(title=title, match_aspect=True, plot_height=400, plot_width=550,
                tools="wheel_zoom,reset", background_fill_color='white')
     p.grid.visible = False
 
@@ -42,22 +43,22 @@ def plot_hexbin(x, y, title):
         tooltips=[("count", "@c"), ("(q,r)", "(@q, @r)")],
         mode="mouse", point_policy="follow_mouse", renderers=[r]
     ))
+    p.xaxis.axis_label = 'age'
+    p.yaxis.axis_label = 'insu'
     script, div = components(p)
     return script, div
 
 
-def plot_hist(df, title):
+def plot_hist(df, bins, title, xlabel):
     p = df.plot_bokeh(
         kind="hist",
-        bins=np.arange(0, 100, 4),
+        bins=bins,
         vertical_xlabel=False,
-        xlabel="Age",
+        xlabel=xlabel,
         normed=1000,
         hovertool=False,
         title=title,
         show_figure=False)
-    p.axis.major_label_text_font_size = '12pt'
-    p.xaxis.axis_label_text_font_size = "12pt"
     script, div = components(p)
     return script, div
 
@@ -65,7 +66,7 @@ def plot_hist(df, title):
 def plot_stacked_bar(cols, classes, data, title):
     colors = ["maroon", "salmon"]
 
-    p = figure(x_range=cols, plot_height=350, title=title,
+    p = figure(x_range=cols, plot_height=380, plot_width=550, title=title,
                toolbar_location=None, tools="")
 
     p.vbar_stack(classes, x='labels', width=0.9, color=colors, source=data,
@@ -119,7 +120,7 @@ def box_plot(yy, g):
             outy.append(out.loc[keys[0]].loc[keys[1]])
 
     p = figure(tools="", background_fill_color="white", x_range=lists, toolbar_location=None,
-               plot_height=540)
+               plot_height=540, plot_width=550)
 
     # if no outliers, shrink lengths of stems to be no longer than the minimums or maximums
     qmin = groups.quantile(q=0.00)
@@ -143,13 +144,57 @@ def box_plot(yy, g):
     # if not out.empty:
     #     p.circle(outx, outy, size=6, color="#F38630", fill_alpha=0.6)
 
+    p.y_range.start = 0
+    p.x_range.range_padding = 0.1
     p.xgrid.grid_line_color = None
-    p.ygrid.grid_line_color = "white"
     p.grid.grid_line_width = 2
     p.xaxis.major_label_text_font_size = "16px"
     p.xaxis.major_label_orientation = math.pi/2
 
     # or alternatively:
     p.xaxis.major_label_orientation = "vertical"
+    script, div = components(p)
+    return script, div
+
+
+def plot_nested_bar(cols, classes, data, title):
+    x = [(col, classs) for col in cols for classs in classes]
+    counts = sum(zip(data['1'], data['2'], data['3'], data['4'], data['5'], data['6'], data['7']), ())
+
+    source = ColumnDataSource(data=dict(x=x, counts=counts))
+    p = figure(x_range=FactorRange(*x), plot_height=400, plot_width=1100, title=title,
+               toolbar_location=None, tools="")
+    palette = ["#FFA69E", "#FAF3DD", "#B8F2E6", "#AED9E0", "#5E6472", "#BB7E8C"]
+    p.vbar(x='x', top='counts', width=0.9, source=source, fill_color=factor_cmap('x', palette=palette, factors=classes,
+                                                                                 start=1, end=2))
+
+    p.x_range.range_padding = 0.1
+    p.xgrid.grid_line_color = None
+    script, div = components(p)
+    return script, div
+
+
+def plot_nested_bar1(cols, classes, data, title):
+    x = [(col, classs) for col in cols for classs in classes]
+    counts = sum(zip(data['Not at all'], data['Heard of it'], data['Not so much'], data['Relatively know'], data['Very detailed']), ())
+
+    source = ColumnDataSource(data=dict(x=x, counts=counts))
+    p = figure(x_range=FactorRange(*x), plot_height=400, plot_width=1100, title=title,
+               toolbar_location=None, tools="")
+    palette = ["#FFA69E", "#FAF3DD", "#B8F2E6", "#AED9E0"]
+    p.vbar(x='x', top='counts', width=0.9, source=source, fill_color=factor_cmap('x', palette=palette, factors=classes,
+                                                                                 start=1, end=2))
+
+    p.y_range.start = 0
+    p.x_range.range_padding = 0.1
+    p.xaxis.major_label_orientation = 1
+    p.xgrid.grid_line_color = None
+    script, div = components(p)
+    return script, div
+
+
+def plot_heatmap(data, x, y, title):
+    p = figure()
+    p.rect(data, x=x, y=y, values='score', title=title, stat=None)
     script, div = components(p)
     return script, div

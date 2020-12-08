@@ -19,10 +19,10 @@
 <div class="nav-tracker">
     <div class="container-fluid" style="margin-top: 20px; margin-bottom: 50px;">
         <div class="row justify-content-center">
-            <div class="col-12 col-sm-6 col-lg-3"><a id="normal" href="{% url 'caloriestracker' %}">Tracker</a></div>
-            <div class="col-12 col-sm-6 col-lg-3"><a id="normal" href="{% url 'profile' %}">Goal Management</a></div>
-            <div class="col-12 col-sm-6 col-lg-3"><a id="normal" href="{% url 'add_food' %}">Your Food List</a></div>
-            <div class="col-12 col-sm-6 col-lg-3" id="add-food-button" style="margin-top: 0; margin-bottom: 20px;"><a href="{% url 'select_food' %}">Add to tracker from list</a></div>
+            <div class="col-12 col-sm-6 col-lg-3" ><a id="normal" href="{% url 'caloriestracker' %}">トラッカー</a></div>
+            <div class="col-12 col-sm-6 col-lg-3" ><a id="normal" href="{% url 'profile' %}">ゴール管理</a></div>
+            <div class="col-12 col-sm-6 col-lg-3" ><a id="normal" href="{% url 'add_food' %}">あなたのリスト</a></div>
+            <div class="col-12 col-sm-6 col-lg-3" id="add-food-button" style="margin-top: 0; margin-bottom: 20px;"><a href="{% url 'select_food' %}">リストから追加</a></div>
         </div>
     </div>
 </div>
@@ -48,31 +48,31 @@
             <div>
                 <div class="col-12 item " style="position: sticky;">
                     <div class="card item-card card-block" id="calories-amount" style="background-color: #a6a6a6; color: #ffffff; padding: 20px;">
-                        <h5 class="card-title mt-3 mb-3 text-center">Consumed</h5>
+                        <h5 class="card-title mt-3 mb-3 text-center">今日のカロリー消費</h5>
                         <p class="card-text text-center">{{ total_calorie }} kcal</p>
                     </div>
                 </div>
                 <div class="col-12 item" id="calories-amount">
                     <div class="card item-card card-block mt-sm-2 mt-lg-0" style="background-color: #FFFF43; padding: 20px;">
-                        <h5 class="card-title  mt-3 mb-3 text-center">Goal</h5>
+                        <h5 class="card-title  mt-3 mb-3 text-center">目標</h5>
                         <p class="card-text text-center">{{ calorie_goal }} kcal</p>
                     </div>
                 </div>
             </div>
         </div>
         <div class=col-lg-6 style="margin-top: 30px;">
-            <h1 class="headline text-center mt-auto mb-auto">Food consumed today</h1>
+            <h1 class="headline text-center mt-auto mb-auto">消費された食料</h1>
             <div class="row justify-content-center">
-            <div class="col-10 col-md-5" id="add-food-button" style="color: #ffffff !important;"><a href="{% url 'select_food' %}">Add from list</a></div>
+            <div class="col-10 col-md-5" id="add-food-button" style="color: #ffffff !important;"><a href="{% url 'select_food' %}">リストから追加</a></div>
             </div>
-            <p style="font-size:15px; font-weight: 500; margin: auto; text-align: center;">Select food from <span style="color:  #ff9898;">your foodlist</span> to add to the table.</p>
+            <p style="font-size:15px; font-weight: 500; margin: auto; text-align: center;"> <span style="color:  #ff9898;">食料リスト</span>から追加する</p>
     <div class="container table-responsive py-5" style="padding: 0; padding-top: 25px !important;">
         <table class="table table-bordered table-hover">
             <thead class="thead-dark">
             <tr class="text-center">
-                <th scope="col">Food</th>
-                <th scope="col">Calorie</th>
-                <th scope="col">Count</th>
+                <th scope="col">食料</th>
+                <th scope="col">カロリー</th>
+                <th scope="col">量</th>
             </tr>
             </thead>
             <tbody>

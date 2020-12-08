@@ -15,26 +15,25 @@
 {% include "home/navbar.html" %}
 <div class="vertical-navbar">
     <ul>
-        <li id="physical-health-button"><a href="#general-information">General Information</a></li>
-        <li id="mental-health-button"><a href="#symtomp">Symptoms</a></li>
-        <li id="mental-health-button"><a href="#diagnosis">Diagnosis</a></li>
-        <li id="mental-health-button"><a href="#causes">Causes</a></li>
-        <li id="mental-health-button"><a href="#prevention">Prevention</a></li>
-        <li id="mental-health-button"><a href="#treatment">Treatment</a></li>
-        <li id="mental-health-button"><a href="#source">Source</a></li>
+        <li id="physical-health-button"><a href="#general-information">概要</a></li>
+        <li id="mental-health-button"><a href="#symtomp">症状</a></li>
+        <li id="mental-health-button"><a href="#diagnosis">診断</a></li>
+        <li id="mental-health-button"><a href="#causes">原因</a></li>
+        <li id="mental-health-button"><a href="#prevention">予防</a></li>
+        <li id="mental-health-button"><a href="#treatment">治療法</a></li>
+        <li id="mental-health-button"><a href="#source">資源</a></li>
     </ul>
 </div>
 <div class="main" id="healthbook">
 <div>
-{#    <img class="img-fluid" class="function-icon" src="{% static 'thumbnail/depression-cover.jpg' %}" alt="cover">#}
     <h2>{{ mentaldiseases.name | linebreaksbr }}</h2>
     <ul class="detail-disease" style="padding: 0;">
-        <li id="general-information"><h4>General Information</h4> {{ mentaldiseases.general_information | linebreaksbr }}</li>
-        <li id="symptom"><h4>Symptoms</h4> {{ mentaldiseases.symptoms | linebreaksbr }}</li>
-        <li id="diagnosis"><h4>Diagnosis</h4> {{ mentaldiseases.diagnosis | linebreaksbr }}</li>
-        <li id="causes"><h4>Causes</h4> {{ mentaldiseases.cause | linebreaksbr }}</li>
-        <li id="prevention"><h4>Prevention</h4> {{ mentaldiseases.prevention | linebreaksbr }}</li>
-        <li id="treatment"><h4>Treatment</h4> {{ mentaldiseases.treatment | linebreaksbr }}</li>
+        <li id="general-information"><h4>概要</h4> {{ mentaldiseases.general_information | linebreaksbr }}</li>
+        <li id="symptom"><h4>症状</h4> {{ mentaldiseases.symptoms | linebreaksbr }}</li>
+        <li id="diagnosis"><h4>診断</h4> {{ mentaldiseases.diagnosis | linebreaksbr }}</li>
+        <li id="causes"><h4>原因</h4> {{ mentaldiseases.cause | linebreaksbr }}</li>
+        <li id="prevention"><h4>予防</h4> {{ mentaldiseases.prevention | linebreaksbr }}</li>
+        <li id="treatment"><h4>治療法</h4> {{ mentaldiseases.treatment | linebreaksbr }}</li>
         <li id="source"><h4>URL</h4> <a href="{{ mentaldiseases.url }}">{{ mentaldiseases.url | linebreaksbr }}</a></li>
     </ul>
 </div>

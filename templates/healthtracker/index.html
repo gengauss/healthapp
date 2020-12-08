@@ -17,10 +17,10 @@
 <div class="main">
     <div class="container-fluid" style="margin-bottom: 50px;">
         <div class="row justify-content-center" style="margin-bottom:30px ;">
-            <img id="profile-picture" class="img-fluid" class="function-icon" src="{% static 'img/member_images/Tung.png' %}">
+            <img id="profile-picture" class="img-fluid" class="function-icon" src="{% static 'img/avatar_placeholder.png' %}">
         </div>
         <div class="row justify-content-center">
-            <h2>KMT</h2>
+            <h2>こんにちは！, {{ request.user }}</h2>
         </div>
     </div>
     <div class="container-fluid">
@@ -28,19 +28,22 @@
             <div class="col-md-3">
                 <div class="article" id="big-article">
                     <h4><a href="{% url 'forum' %}">Health Forum</a></h4>
-                    <p>Share your tips and get tips from others</p>
+                    <p>健康や病気などの気になることの質問が自由にでき、Q&Aのやり取りをする場です。
+                    </p>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="article" id="big-article">
                     <h4><a href="{% url 'caloriestracker' %}">Calories Tracker</a></h4>
-                    <p>Add and manage your calories</p>
+                    <p><span style="opacity: 0;"></span><br>あなたの摂取カロリーの管理に役立ちます。<span style="opacity: 0;"></span>
+                    </p>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="article" id="big-article">
                     <h4><a href="{% url 'goalstracker' %}">Health Goals Tracker</a></h4>
-                    <p>Create and manage your health goals</p>
+                    <p>あなた自身の健康の目標を設定出来ます。リマインドに役立ちます。
+                    </p>
                 </div>
             </div>
         </div>
@@ -50,6 +53,7 @@
     <h1>You have to login first</h1>
     <a class="nav-link" href="{% url 'login' %}">Login</a>
 {% endif %}
+{% include "home/footer.html" %}
 </body>
 
 </html>

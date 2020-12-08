@@ -30,7 +30,7 @@ def plot_country():
     data['angle'] = data['value'] / data['value'].sum() * 2 * pi
     data['color'] = Category20c[len(x)]
 
-    p = figure(plot_height=350, title="Country", toolbar_location=None,
+    p = figure(plot_height=350, plot_width=550, title="Country", toolbar_location=None,
                tools="hover", tooltips="@country: @value", x_range=(-0.5, 1.0))
 
     p.wedge(x=0, y=1, radius=0.4,
@@ -59,7 +59,7 @@ def plot_age():
     data['angle'] = data['value'] / data['value'].sum() * 2 * pi
     data['color'] = Category20c[len(x)]
 
-    p = figure(plot_height=350, title="Age", toolbar_location=None,
+    p = figure(plot_height=350, plot_width=550, title="Age", toolbar_location=None,
                tools="hover", tooltips="@age: @value", x_range=(-0.5, 1.0))
 
     p.wedge(x=0, y=1, radius=0.4,
@@ -87,7 +87,7 @@ def plot_occupation():
     data['angle'] = data['value'] / data['value'].sum() * 2 * pi
     data['color'] = Category20c[len(x)]
 
-    p = figure(plot_height=350, title="Occupation", toolbar_location=None,
+    p = figure(plot_height=350, plot_width=550, title="Occupation", toolbar_location=None,
                tools="hover", tooltips="@country: @value", x_range=(-0.5, 1.0))
 
     p.wedge(x=0, y=1, radius=0.4,
@@ -112,7 +112,7 @@ def plot_gender():
     data['angle'] = data['value'] / data['value'].sum() * 2 * pi
     data['color'] = Category20c[len(x)]
 
-    p = figure(plot_height=350, title="Gender", toolbar_location=None,
+    p = figure(plot_height=350, plot_width=550, title="Gender", toolbar_location=None,
                tools="hover", tooltips="@gender: @value", x_range=(-0.5, 1.0))
 
     p.wedge(x=0, y=1, radius=0.4,
@@ -137,7 +137,7 @@ def plot_water():
     data['angle'] = data['value'] / data['value'].sum() * 2 * pi
     data['color'] = Category20c[len(x)]
 
-    p = figure(plot_height=350, title="Water per day", toolbar_location=None,
+    p = figure(plot_height=350, plot_width=550, title="Water per day", toolbar_location=None,
                tools="hover", tooltips="@water: @value", x_range=(-0.5, 1.0))
 
     p.wedge(x=0, y=1, radius=0.4,
@@ -162,7 +162,7 @@ def plot_diet():
     data['angle'] = data['value'] / data['value'].sum() * 2 * pi
     data['color'] = Category20c[len(x)]
 
-    p = figure(plot_height=350, title="Diet", toolbar_location=None,
+    p = figure(plot_height=350, plot_width=550, title="Diet", toolbar_location=None,
                tools="hover", tooltips="@diet: @value", x_range=(-0.5, 1.0))
 
     p.wedge(x=0, y=1, radius=0.4,
@@ -187,7 +187,7 @@ def plot_meals():
     data['angle'] = data['value'] / data['value'].sum() * 2 * pi
     data['color'] = Category20c[len(x)]
 
-    p = figure(plot_height=350, title="Number of meals", toolbar_location=None,
+    p = figure(plot_height=350, plot_width=550, title="Number of meals", toolbar_location=None,
                tools="hover", tooltips="@diet: @value", x_range=(-0.5, 1.0))
 
     p.wedge(x=0, y=1, radius=0.4,
@@ -214,7 +214,7 @@ def plot_first_meal():
     data['angle'] = data['value'] / data['value'].sum() * 2 * pi
     data['color'] = Category20c[len(x)]
 
-    p = figure(plot_height=350, title="First meal time", toolbar_location=None,
+    p = figure(plot_height=350, plot_width=550, title="First meal time", toolbar_location=None,
                tools="hover", tooltips="@first_meal: @value", x_range=(-0.5, 1.0))
 
     p.wedge(x=0, y=1, radius=0.4,
@@ -241,7 +241,7 @@ def plot_last_meal():
     data['angle'] = data['value'] / data['value'].sum() * 2 * pi
     data['color'] = Category20c[len(x)]
 
-    p = figure(plot_height=350, title="Last meal time", toolbar_location=None,
+    p = figure(plot_height=350, plot_width=550, title="Last meal time", toolbar_location=None,
                tools="hover", tooltips="@last_meal: @value", x_range=(-0.5, 1.0))
 
     p.wedge(x=0, y=1, radius=0.4,
@@ -268,12 +268,64 @@ def plot_same_meal():
     data['angle'] = data['value'] / data['value'].sum() * 2 * pi
     data['color'] = Category20c[len(x)]
 
-    p = figure(plot_height=350, title="Having meals at the same time every day", toolbar_location=None,
+    p = figure(plot_height=350, plot_width=550, title="Having meals at the same time every day", toolbar_location=None,
                tools="hover", tooltips="@same_meal: @value", x_range=(-0.5, 1.0))
 
     p.wedge(x=0, y=1, radius=0.4,
             start_angle=cumsum('angle', include_zero=True), end_angle=cumsum('angle'),
             line_color="white", fill_color='color', legend_field='same_meal', source=data)
+
+    p.axis.axis_label = None
+    p.axis.visible = False
+    p.grid.grid_line_color = None
+
+    script, div = components(p)
+    return script, div
+
+
+def plot_stress():
+    x = {
+        '時々 Sometimes': 133,
+        'あんまり Not really': 50,
+        'どちらとも言えない  I don’t know': 32,
+        'ほとんどの時間 Most of the time': 31,
+        'どういたしまして Not at all': 18
+    }
+    data = pd.Series(x).reset_index(name='value').rename(columns={'index': 'stress'})
+    data['angle'] = data['value'] / data['value'].sum() * 2 * pi
+    data['color'] = Category20c[len(x)]
+
+    p = figure(plot_height=350, plot_width=550, title="Do you feel stressed every day?", toolbar_location=None,
+               tools="hover", tooltips="@stress: @value", x_range=(-0.5, 1.0))
+
+    p.wedge(x=0, y=1, radius=0.4,
+            start_angle=cumsum('angle', include_zero=True), end_angle=cumsum('angle'),
+            line_color="white", fill_color='color', legend_field='stress', source=data)
+
+    p.axis.axis_label = None
+    p.axis.visible = False
+    p.grid.grid_line_color = None
+
+    script, div = components(p)
+    return script, div
+
+
+def plot_mental_diseases():
+    x = {
+        'いいえ No': 182,
+        '多分 Maybe': 43,
+        'はい Yes': 39
+    }
+    data = pd.Series(x).reset_index(name='value').rename(columns={'index': 'mental_diseases'})
+    data['angle'] = data['value'] / data['value'].sum() * 2 * pi
+    data['color'] = Category20c[len(x)]
+
+    p = figure(plot_height=350, plot_width=550, title="Have you experienced any disorder?", toolbar_location=None,
+               tools="hover", tooltips="@mental_diseases: @value", x_range=(-0.5, 1.0))
+
+    p.wedge(x=0, y=1, radius=0.4,
+            start_angle=cumsum('angle', include_zero=True), end_angle=cumsum('angle'),
+            line_color="white", fill_color='color', legend_field='mental_diseases', source=data)
 
     p.axis.axis_label = None
     p.axis.visible = False

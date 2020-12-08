@@ -31,7 +31,7 @@
         padding: 20px;
         background-color: #fff;
         border-radius: 3px;
-        box-shadow: 6px 2px 30px 0px rgba(0, 0, 0, 0.75);
+        border: 2px solid #ce7979;
     }
 
     .item-row {
@@ -45,7 +45,7 @@
     }
 
     .save {
-        background-color: #2E9D65;
+        background-color: #ce7979;
         color: white;
     }
 </style>
@@ -54,7 +54,7 @@
 <br><br><br>
 {% if user.is_authenticated %}
     <div class="container">
-        <p><a class="btn btn-sm btn-success" href="{% url 'goalstracker' %}">Back to list</a></p>
+        <p><a class="btn save" href="{% url 'goalstracker' %}">Back to list</a></p>
         <b>Update Task</b>
         <p>
         <form method="POST" action="">{% csrf_token %}
