@@ -33,11 +33,11 @@
 
             <p class="card-text text-center pt-3" style="font-size:35px; color:red; font-weight: 700;">
                 {% if calorie_goal_status > 0 %}
-                    You need  {{ calorie_goal_status }} calories more to reach your goal
+                    目標まであと {{ calorie_goal_status }} カロリー不足しています
                 {% elif calorie_goal == 0 %}
                     <a href="{% url "profile" %}"> 今日の目標カロリーを入力しましょう</a>
                 {% else %}
-                    You surpassed your goal by {{ over_calorie }} calories
+                    目標まであと {{ over_calorie }} カロリー超過しています
                 {% endif %} </p>
 
         </div>
