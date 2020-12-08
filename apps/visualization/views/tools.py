@@ -20,7 +20,7 @@ def plot_bar_chart(cols, counts, title, fill_color):
 
 
 def plot_count(cols, counts, title, fill_color):
-    p = figure(x_range=cols, plot_height=350, title=title,
+    p = figure(x_range=cols, plot_height=350, plot_width=550, title=title,
                toolbar_location=None, tools="")
 
     p.vbar(x=cols, top=counts, width=0.9, fill_color=fill_color)
@@ -31,7 +31,7 @@ def plot_count(cols, counts, title, fill_color):
 
 
 def plot_hexbin(x, y, title):
-    p = figure(title=title, match_aspect=True, plot_height=370,
+    p = figure(title=title, match_aspect=True, plot_height=400, plot_width=550,
                tools="wheel_zoom,reset", background_fill_color='white')
     p.grid.visible = False
 
@@ -43,22 +43,22 @@ def plot_hexbin(x, y, title):
         tooltips=[("count", "@c"), ("(q,r)", "(@q, @r)")],
         mode="mouse", point_policy="follow_mouse", renderers=[r]
     ))
+    p.xaxis.axis_label = 'age'
+    p.yaxis.axis_label = 'insu'
     script, div = components(p)
     return script, div
 
 
-def plot_hist(df, title):
+def plot_hist(df, bins, title, xlabel):
     p = df.plot_bokeh(
         kind="hist",
-        bins=np.arange(0, 100, 4),
+        bins=bins,
         vertical_xlabel=False,
-        xlabel="Age",
+        xlabel=xlabel,
         normed=1000,
         hovertool=False,
         title=title,
         show_figure=False)
-    p.axis.major_label_text_font_size = '12pt'
-    p.xaxis.axis_label_text_font_size = "12pt"
     script, div = components(p)
     return script, div
 
@@ -66,7 +66,7 @@ def plot_hist(df, title):
 def plot_stacked_bar(cols, classes, data, title):
     colors = ["maroon", "salmon"]
 
-    p = figure(x_range=cols, plot_height=350, title=title,
+    p = figure(x_range=cols, plot_height=380, plot_width=550, title=title,
                toolbar_location=None, tools="")
 
     p.vbar_stack(classes, x='labels', width=0.9, color=colors, source=data,

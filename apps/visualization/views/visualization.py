@@ -111,7 +111,7 @@ def diabetes_result(request):
 
     # age
     age = diabetes['age'].value_counts().tolist()
-    script_age, div_age = plot_count(tested_cols, age, "Age", fill_color)
+    script_age, div_age = plot_count(tested_cols, age, "age", fill_color)
 
     # insu
     x = np.array(diabetes['insu'])
@@ -125,7 +125,7 @@ def diabetes_result(request):
         'tested_negative': diabetes["age"][diabetes['tested'] == 'tested_negative']
     }, columns=['tested_positive', 'tested_negative'])
 
-    script_dist, div_dist = plot_hist(df_dist, "Age distribution")
+    script_dist, div_dist = plot_hist(df_dist, np.arange(0, 100, 10), "Age distribution", "Age")
 
     labels = ['Unhealthy', 'Healthy', 'Overweight', 'Obese']
     tested = ['tested_positive', 'tested_negative']
