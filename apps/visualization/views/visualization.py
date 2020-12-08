@@ -2,11 +2,12 @@ import pandas as pd
 from django.db import connection
 from django.shortcuts import render
 
+from .suicide_rate import plot_suicide_gender, plot_suicide_age
 from .survey import plot_country, plot_age, plot_occupation, plot_gender, plot_water, plot_diet, plot_meals, \
     plot_first_meal, plot_last_meal, plot_same_meal, plot_stress, plot_mental_diseases
 from .tools import plot_bar_chart, plot_count, plot_hexbin, plot_hist, plot_stacked_bar, plot_line, box_plot, \
-    plot_nested_bar, plot_nested_bar1, plot_heatmap
-from ..models import Survey, Diabetes, Depression
+    plot_nested_bar, plot_nested_bar1, plot_heatmap, plot_nested_bar2, plot_nested_bar3, plot_nested_bar4
+from ..models import Survey, Diabetes, Depression, SuicideRate
 import numpy as np
 import pandas_bokeh
 
@@ -173,13 +174,6 @@ def depression_result(request):
     df1 = dep_symptoms.melt(var_name='columns', value_name='index')
     result = pd.crosstab(index=df1['index'], columns=df1['columns'])
 
-    from bokeh.sampledata.unemployment1948 import data
-
-    # data['index'] = data['index'].astype(str)
-    # data = data.set_index('index')
-    # data.drop('Annual', axis=1, inplace=True)
-    # data.columns.name = 'Month'
-
     script_hm, div_hm = plot_heatmap(result)
 
     data_dict = {'script_box': script_box, 'div_box': div_box,
@@ -188,3 +182,70 @@ def depression_result(request):
                  'script_hm': script_hm, 'div_hm': div_hm
                  }
     return render(request, '../templates/visualization/depression.html', data_dict)
+
+
+def suicide_result(request):
+    query = str(SuicideRate.objects.all().query)
+    suicide = pd.read_sql_query(query, connection)
+    script_gender, div_gender = plot_suicide_gender()
+    i = ['15-24', '25-34', '35-54', '5-14', '55-74', '75+']
+    level = ['female', 'male']
+
+    data = {'i': i,
+            'female': [0.1875, 0.2083, 0.50, 0.01, 0.45, 0.22],
+            'male': [0.625, 0.9375, 1.8, 0.03, 1.23, 0.45]}
+
+    script_age, div_age = plot_nested_bar2(i, level, data, "Worldwide Suicide on total suicide by Age (1985-2015)")
+
+    i1 = ['Russian Federation', 'United States', 'Japan', 'France', 'Ukraine', 'Germany', 'Republic of Korea', 'Brazil',
+          'Poland', 'United Kingdom']
+
+    data1 = {'i': i1,
+             'female': [0.21, 0.21, 0.25, 0.09, 0.05, 0.08, 0.08, 0.03, 0.01, 0.02],
+             'male': [1.0, 0.82, 0.58, 0.22, 0.23, 0.21, 0.18, 0.18, 0.1, 0.09]}
+
+    script_country, div_country = plot_nested_bar3(i1, level, data1,
+                                                   "Top 10 countries total suicide Hue Sex (1985-2015)")
+
+    script_age_range, div_age_range = plot_suicide_age()
+
+    i2 = ['15-24', '25-34', '35-54', '5-14', '55-74', '75+']
+
+    data2 = {'i': i2,
+             'female': [4, 5, 7, 0.5, 9.5, 13],
+             'male': [15, 21, 28, 0.7, 30.5, 46]}
+
+    script_100k, div_100k = plot_nested_bar2(i2, level, data2, "Suicide rate 100k Population by age range (1985-2015)")
+
+    i3 = ['male', 'female']
+    level2 = ['Generation X', 'Silent', 'G.I. Generation', 'Boomers', 'Millenials', 'Generation Z']
+
+    data3 = {'i': i3,
+             'Generation X': [380, 90],
+             'Silent': [400, 150],
+             'G.I. Generation': [250, 120],
+             'Boomers': [730, 190],
+             'Millenials': [180, 40],
+             'Generation Z': [10, 8]}
+
+    script_g, div_g = plot_nested_bar4(i3, level2, data3, "Number of suicides by generations (1985-2015)")
+
+    cols = suicide['generation'].value_counts().keys().tolist()
+    counts = suicide['generation'].value_counts().tolist()
+    generation = {'cols': cols,
+                  'counts': counts}
+    generation_df = pd.DataFrame(generation)
+    fill_color = ["#16697a", "#489fb5", "#82c0cc", "#ede7e3", "#ffa62b", "#f1dca7"]
+    script_generation, div_generation = plot_count(generation_df['cols'],
+                                                   generation_df['counts'],
+                                                   title="Worldwide Suicide on total suicide by generation (1985-2015)",
+                                                   fill_color=fill_color)
+
+    data_dict = {'script_gender': script_gender, 'div_gender': div_gender,
+                 'script_age': script_age, 'div_age': div_age,
+                 'script_country': script_country, 'div_country': div_country,
+                 'script_age_range': script_age_range, 'div_age_range': div_age_range,
+                 'script_100k': script_100k, 'div_100k': div_100k,
+                 'script_generation': script_generation, 'div_generation': div_generation,
+                 'script_g': script_g, 'div_g': div_g}
+    return render(request, '../templates/visualization/suicide_rate.html', data_dict)

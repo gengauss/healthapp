@@ -194,6 +194,64 @@ def plot_nested_bar1(cols, classes, data, title):
     return script, div
 
 
+def plot_nested_bar2(cols, classes, data, title):
+    x = [(col, classs) for col in cols for classs in classes]
+    counts = sum(zip(data['female'], data['male']), ())
+
+    source = ColumnDataSource(data=dict(x=x, counts=counts))
+    p = figure(x_range=FactorRange(*x), plot_height=400, plot_width=550, title=title,
+               toolbar_location=None, tools="")
+    palette = ["#2ec4b6", "#f29e4c"]
+    p.vbar(x='x', top='counts', width=0.9, source=source, fill_color=factor_cmap('x', palette=palette, factors=classes,
+                                                                                 start=1, end=2))
+
+    p.y_range.start = 0
+    p.x_range.range_padding = 0.1
+    p.xaxis.major_label_orientation = 1
+    p.xgrid.grid_line_color = None
+    script, div = components(p)
+    return script, div
+
+
+def plot_nested_bar3(cols, classes, data, title):
+    x = [(col, classs) for col in cols for classs in classes]
+    counts = sum(zip(data['female'], data['male']), ())
+
+    source = ColumnDataSource(data=dict(x=x, counts=counts))
+    p = figure(x_range=FactorRange(*x), plot_height=400, plot_width=1100, title=title,
+               toolbar_location=None, tools="")
+    palette = ["#2ec4b6", "#f29e4c"]
+    p.vbar(x='x', top='counts', width=0.9, source=source, fill_color=factor_cmap('x', palette=palette, factors=classes,
+                                                                                 start=1, end=2))
+
+    p.y_range.start = 0
+    p.x_range.range_padding = 0.1
+    p.xaxis.major_label_orientation = 1
+    p.xgrid.grid_line_color = None
+    script, div = components(p)
+    return script, div
+
+
+def plot_nested_bar4(cols, classes, data, title):
+    x = [(col, classs) for col in cols for classs in classes]
+    counts = sum(zip(data['Generation X'], data['Silent'], data['G.I. Generation'],
+                     data['Boomers'], data['Millenials'], data['Generation Z']), ())
+
+    source = ColumnDataSource(data=dict(x=x, counts=counts))
+    p = figure(x_range=FactorRange(*x), plot_height=430, plot_width=550, title=title,
+               toolbar_location=None, tools="")
+    palette = ["#233d4d", "#fe7f2d", "#fcca46", "#a1c181", "#619b8a"]
+    p.vbar(x='x', top='counts', width=0.9, source=source, fill_color=factor_cmap('x', palette=palette, factors=classes,
+                                                                                 start=1, end=2))
+
+    p.y_range.start = 0
+    p.x_range.range_padding = 0.1
+    p.xaxis.major_label_orientation = 1
+    p.xgrid.grid_line_color = None
+    script, div = components(p)
+    return script, div
+
+
 def plot_heatmap(data):
     index = list(data.index)
     columns = list(data.columns)
