@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.db import models
+from import_export.admin import ImportExportModelAdmin
 
 CHOICES = (
     ("1", "1"),
@@ -56,7 +57,7 @@ class Feedback(models.Model):
     hg_feedback = models.TextField(null=True, blank=True)
 
 
-class FeedbackAdmin(admin.ModelAdmin):
+class FeedbackAdmin(ImportExportModelAdmin):
     list_display = ('hb_content', 'hb_design', 'hb_change', 'hb_feedback',
                     'vs_content', 'vs_design', 'vs_change', 'vs_feedback',
                     'fr_design', 'fr_use', 'fr_opinion', 'fr_change', 'fr_feedback',

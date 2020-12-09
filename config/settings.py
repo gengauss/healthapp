@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'apps.healthbook',
     'apps.visualization',
     'apps.healthtracker',
+    'import_export'
 ]
 
 MIDDLEWARE = [
@@ -133,5 +134,6 @@ STATICFILES_DIRS = (
   os.path.join(BASE_DIR, 'static'),
 )
 
+IMPORT_EXPORT_USE_TRANSACTIONS = True
 
 LOGIN_REDIRECT_URL = 'healthtracker'
