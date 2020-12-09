@@ -392,6 +392,9 @@ th{
     padding:8%;
     margin-top: 200px;
 }
+#logo img{
+    width: 50%;
+}
 /* Responsive columns */
 @media screen and (max-width: 600px) {
     /*styling landing page banner */
@@ -482,4 +485,20 @@ th{
     }
 }
 
+@media only screen and (min-width: 600px) and (max-width: 1000px) {
+    #navbarSupportedContent{
+        border-radius: 10px;
+        float: none;
+        background-color:rgba(0, 0, 0, 0.9);
+        padding: 40px;
+    }
+}
 
+@media (min-width: 1000px) and (max-width: 1500px) {
+   #logo {
+       width: 10% !important;
+}
+    #logo img{
+        width: 130%;
+    }
+}
