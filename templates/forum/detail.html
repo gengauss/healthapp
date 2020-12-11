@@ -20,15 +20,15 @@
 <div class="container-fluid">
   <div class="row">
     <h1 class="col-12 col-md-8">{{ question.title }}</h1>
-    <div class="col-12 col-md-4">
-      <div style="float: right;">
-      <a  style="margin-left:20px;" href="{% url 'update' question.id %}">
-        編集
-      </a>
-      <a  style="margin-left:20px;" href="{% url 'delete' question.id %}" class="btn btn-danger btn-xs">
-        消す
-      </a>
-      </div>
+{#    <div class="col-12 col-md-4">#}
+{#      <div style="float: right;">#}
+{#      <a  style="margin-left:20px;" href="{% url 'update' question.id %}">#}
+{#        編集#}
+{#      </a>#}
+{#      <a  style="margin-left:20px;" href="{% url 'delete' question.id %}" class="btn btn-danger btn-xs">#}
+{#        消す#}
+{#      </a>#}
+{#      </div>#}
     </div>
   </div>
     <small>[{{ question.posted_at }}]</small>
